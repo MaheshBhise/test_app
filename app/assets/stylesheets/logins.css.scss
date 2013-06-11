@@ -1,0 +1,32 @@
+// Place all the styles related to the logins controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.sign_up_head{
+	border-bottom:1px solid #D9D9D9;
+	margin-bottom: 0;
+	font-family:Arial,sans-serif;
+}
+
+.sign_up_head h2{
+	font-family:Arial,sans-serif;
+	font-size:30px;
+	line-height:36px;	
+}
+
+.label-signup{
+	width:22%;
+	float:left;
+	text-align:right;
+	font-size:15px;
+	padding:7px 10px 0 0;
+	line-height:10px;
+}
+
+.control-group{
+	margin-bottom:5px;
+}
+
+h3{
+	font-size:18px;
+	line-height:27px;
+}

@@ -1,0 +1,28 @@
+<div class="row_fluid">
+  <div class="span8" style="min-height:150px;border-right:1px solid black;margin-bottom:10px;">
+    <% course = Course.find_by_id(cid)%>
+    <% if !course.sections.nil? %>
+        <%  course.sections.each do |s| %>
+        <br/><b><%= s.section_name unless s.nil? %></b><br/>
+        <% if !s.topics.nil? %>
+          <% s.topics.each do |t| %>
+          <%= t.topic_name unless t.nil? %><br/>
+          <% end %>
+        <% else %>
+          <div>No topics for the section</div>
+        <% end %>
+        <% end %>
+    <% else %>
+        <div>No sections for the course</div>
+    <% end %>
+  </div>
+  <div class="span4">
+    <% unless user_signed_in? -%>
+      <%= link_to "Sign Up", new_user_registration_path,{:class=>"btn btn-custom btn-large"} %><br/><br/>
+      <%= link_to "Login", new_user_session_path,{:class=>"btn btn-custom btn-large"} %>
+    <% else -%>
+      <%= link_to "Take Diagnostic",{:controller => "/courses", :action=>"get_all_sections",:id=>"#{course.id}"},{:class=>"btn btn-custom btn-large"}%>
+    <% end -%>
+  </div>
+</div>
+    

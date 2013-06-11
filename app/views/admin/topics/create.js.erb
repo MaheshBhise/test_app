@@ -1,0 +1,9 @@
+<%= blank_field = @invalid_data[0].empty? ? true : false  %>
+<% if @success %>
+<% flash[:notice] = 'Topics were successfully created.' %>
+window.location = "/admin/topics";
+<% elsif !blank_field %>
+alert("Sorry! Duplicate entries found for topic name <%= @invalid_data.join(',') %>");
+<% else %>
+alert("Please enter valid Topic details");
+<% end %>

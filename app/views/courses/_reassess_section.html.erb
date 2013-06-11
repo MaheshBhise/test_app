@@ -1,0 +1,20 @@
+<p style="font-size:22px;font-weight:bold;margin-bottom:20px;">LESSONS & PRACTICE TESTS</p>
+<% i,j = 1,1 %>
+<ul class="nav nav-pills blue" id="myTab">
+  <% courses.each do |c| %>
+    <li class=<%= 'active' if i == 1 %>>
+      <a href="#<%= c.course_name %>" data-toggle="tab">
+        <%= c.course_name %></a>
+    </li>
+    <% i += 1 %>
+  <% end %>
+</ul>
+
+<div class="tab-content" id="myTabContent">
+  <% courses.each do |c| %>
+    <div id="<%= c.course_name %>" class="tab-pane fade <%= 'active in' if j == 1 %>">
+      <%= render :partial=>"courses/show_lesson_details",:locals => {:cid => c.id } %>
+    </div>
+    <% j += 1 %>
+  <% end %>
+</div>

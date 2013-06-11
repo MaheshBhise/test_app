@@ -1,0 +1,9 @@
+<%= blank_field = @invalid_data[0].empty? ? true : false  %>
+<% if @success %>
+<% flash[:notice] = 'Sections were successfully created.' %>
+window.location = "/admin/sections";
+<% elsif !blank_field %>
+alert("Sorry! Duplicate entries found for section name <%= @invalid_data.join(',') %>");
+<% else %>
+alert("Please enter valid Section details");
+<% end %>

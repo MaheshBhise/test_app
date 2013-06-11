@@ -1,0 +1,51 @@
+<h1>Listing questions</h1>
+
+<table>
+  <tr>
+    <th>Question</th>
+    <th>Image link</th>
+    <th>Topic</th>
+    <th>Section</th>
+    <th>Difficulty level</th>
+    <th>Correct answer</th>
+    <th>Long explain</th>
+    <th>Video link</th>
+    <th>Fake answer1</th>
+    <th>Fake answer2</th>
+    <th>Fake answer3</th>
+    <th>Only paid</th>
+    <th>Hint1</th>
+    <th>Hint2</th>
+    <th>Hint3</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @questions.each do |question| %>
+  <tr>
+    <td><%= question.question %></td>
+    <td><%= question.image_link %></td>
+    <td><%= question.topic_id %></td>
+    <td><%= question.section_id %></td>
+    <td><%= question.difficulty_level %></td>
+    <td><%= question.correct_answer %></td>
+    <td><%= question.long_explain %></td>
+    <td><%= question.video_link %></td>
+    <td><%= question.fake_answer1 %></td>
+    <td><%= question.fake_answer2 %></td>
+    <td><%= question.fake_answer3 %></td>
+    <td><%= question.only_paid %></td>
+    <td><%= question.hint1 %></td>
+    <td><%= question.hint2 %></td>
+    <td><%= question.hint3 %></td>
+    <td><%= link_to 'Show', question %></td>
+    <td><%= link_to 'Edit', edit_question_path(question) %></td>
+    <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Question', new_question_path %>

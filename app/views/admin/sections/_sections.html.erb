@@ -1,0 +1,11 @@
+     <div id="part">
+     <%= semantic_fields_for "section[]" do |f| %>  
+     <%= f.inputs "Add Section" do %>
+       <%= f.input :section_name %>  
+       <%= f.input :description, :input_html => { :class => 'autogrow', :rows => 10, :cols => 20  } %>  
+       <%= f.input :video_link %>  
+       <%= f.input :only_paid,:label=>"Select Section Type",:as=>:select, :collection => {"Paid"=>"1","Free"=>"0"}  ,:selected=>'0', :include_blank => false%>   
+       <input type="submit" onclick="$(this).parents().eq(2).html('');" id="remove" value="Remove" name="commit">
+       <% end %>    
+       <% end %>
+   </div>

@@ -1,0 +1,100 @@
+  <%= semantic_form_for [:admin, @question],:html => { :multipart => true }, :validate => true do |f| %>
+  <% @new = false %>
+  <% if f.object.new_record? %>
+  <% @new = true %>
+  <% end %>
+  <%= f.inputs "Question Details" do %>
+     <% if session[:sub_topic_id].present? %>
+    <div id="course_section_topic_select">
+  <fieldset class="inputs">
+    <legend><span>Select Course - Section - Topic</span></legend>
+
+    <ol>
+      <li id="test_course_id_input" class="select input required">
+        <label for="test_course_id" class=" label">Course<abbr title="required">*</abbr></label>
+                 <% st = SubTopic.where("id=?", session[:sub_topic_id]).first %>
+                 <%= st.topic.section.course.course_name %>
+                 <%= hidden_field_tag 'question[course_id]', st.topic.section.course.id %>
+      </li>
+    </ol>
+    <ol>
+      <li id="test_section_id_input" class="select input required">
+        <label for="test_course_id" class=" label">Section<abbr title="required">*</abbr></label>
+                 <%= st.topic.section.section_name %>
+                 <%= hidden_field_tag 'question[section_id]', st.topic.section.id %>
+      </li>
+    </ol>
+    <ol>
+      <li id="test_section_id_input" class="select input required">
+        <label for="test_course_id" class=" label">Topic<abbr title="required">*</abbr></label>
+                 <%= st.topic.topic_name %>
+                 <%= hidden_field_tag 'question[topic_id]', st.topic.id %>        
+      </li>
+    </ol>   
+    <ol>
+      <li id="test_section_id_input" class="select input required">
+        <label for="test_course_id" class=" label">Sub Topic<abbr title="required">*</abbr></label>
+                 <%= st.sub_topic_name %>
+                 <%= hidden_field_tag 'question[sub_topic_id]', st.id %>        
+      </li>
+    </ol>       
+    </fieldset>
+    </div> 
+<% else %>  
+  <%= f.input :course_id, :as => :select, :collection => Course.all.map{|b| [b.course_name,b.id]}, :required => true, :include_blank => "Please Select" %>       
+  <%= f.input :section_id,:as => :select, :collection => Section.all.map{|b| [b.section_name,b.id]}, :required => true, :include_blank => "Please Select" %> 
+  <%= f.input :topic_id,:as => :select, :collection => Topic.all.map{|b| [b.topic_name,b.id]}, :required => true, :include_blank => "Please Select" %> 
+  <%= f.input :sub_topic_id,:as => :select, :collection => SubTopic.all.map{|b| [b.sub_topic_name,b.id]}, :required => true, :include_blank => "Please Select" %> 
+  <% end %>
+  <%= f.input :question, :required => true, :input_html=>{:class => "tinymce"} %><%= tinymce %>
+  <%= f.input :only_paid,:label=>"Select Subscription Type",:as=>:radio, :collection => {"Free"=>"0","Paid"=>"1"}, :required => true, :default => "0"   %>  
+  <%= f.input :difficulty_level, :as => :select,:collection => ["1", "2", "3", "4", "5","6","7"],:include_blank => false, :required => true  %> 
+  <%= f.input :correct_answer, :required => true, :input_html=>{:class => "tinymce"} %> 
+  <%= f.input :fake_answer1, :required => true, :input_html=>{:class => "tinymce"} %>
+  <%= f.input :fake_answer2, :required => true, :input_html=>{:class => "tinymce"} %>
+  <%= f.input :fake_answer3, :required => true, :input_html=>{:class => "tinymce"} %>
+  <%= f.input :fake_answer4, :required => true, :input_html=>{:class => "tinymce"} %>
+  <%= f.input :long_explain, :input_html=>{:class => "tinymce"} %>
+  <%= f.input :video_link %>     
+  <%= f.input :image_link %> 
+  <%= f.input :hint1, :input_html=>{:class => "tinymce"} %> 
+  <%= f.input :hint2, :input_html=>{:class => "tinymce"} %>
+  <%= f.input :hint3, :input_html=>{:class => "tinymce"} %>
+<!--   <li id="image_picture" class="text input optional">
+    <label class=" label" for="image_picture">Question Image</label>
+    <input id="image_picture" type="file" name="image[picture]">
+  </li> -->
+  <% end %>
+  <fieldset class="actions">    
+    <ol>
+      <% if @new %>
+      <li id="question_submit_action" class="action input_action ">
+        <input type="submit" value="Create Question" name="commit">
+      </li>
+      <% else%>
+      <li id="question_submit_action" class="action input_action ">
+        <input type="submit" value="Update Question" name="commit">
+      </li>
+      <% end %>
+      <li class="cancel">
+        <a href="/admin/questions">Cancel</a>
+      </li>
+    </ol>
+  </fieldset>           
+  <% end %>
+  <script type="text/javascript">
+$(function() {
+    //$("#question_course_id").removeAttr('selected').find('option:first').attr('selected', 'selected');
+    $("#question_course_id, #question_section_id, #question_topic_id").change(function() {
+        $.ajax({url: '<%= url_for :action => 'populate_all_select',:id=> '1' %>',
+        data: 'selected=' + this.value + '&distinct=' + this.id,
+        dataType: 'script'})
+    })
+  });
+
+  </script>
+  <style type="text/css">
+  body.active_admin form .activeadmin-wysihtml5{
+    width:78%;
+  }
+  </style>

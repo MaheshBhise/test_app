@@ -1,0 +1,67 @@
+<% if controller.action_name == 'new' %>
+
+<%= semantic_nested_form_for([:admin, @section], :remote => true) do |f|%>
+	<div id="course_select">
+	<fieldset class="inputs">
+		<legend><span>Course</span></legend>
+		<ol>
+			<li id="test_course_id_input" class="select input required">				
+				<% if session[:course_id].present? %>
+				<label for="test_course_id" class=" label">Course<abbr title="required">*</abbr></label>
+                 <% c = Course.where("id=?", session[:course_id]).first %>
+                 <%= c.course_name %>
+                 <%= hidden_field_tag 'post[course_id]', c.id %>
+				<% else %>
+				<label for="test_course_id" class=" label">Select Course<abbr title="required">*</abbr></label>
+				<%= collection_select(:post, :course_id, Course.all, :id, :course_name, :prompt => true) %>
+				<% end %>
+			</li>
+		</ol>
+	</fieldset> 
+	</div>
+
+	<div id="partial_content">
+		<div id="part">
+			<%= semantic_fields_for "section[]" do |f| %>  
+			<%= f.inputs "Add Section Details" do %>
+			<%= f.input :section_name %>  
+			<%= f.input :description, :input_html => { :class => 'autogrow', :rows => 10, :cols => 20  } %>  
+			<%= f.input :video_link %>  
+			<%= f.input :only_paid,:label=>"Select Section Type",:as=>:select, :collection => {"Paid"=>"1","Free"=>"0"},:selected=>'0', :include_blank => false  %>   
+			<% end %>
+			<% end %>
+		</div>
+	</div>
+
+
+	<fieldset class="actions">
+		<ol>
+			<li class="action input_action ">
+				<input type="submit" onclick="javascript:void(0);return false;" id="add_more_sections" value="Add More Sections" name="commit">
+			</li>
+		</ol>
+	</fieldset>
+	<fieldset class="actions">
+		<ol>
+			<li id="section_submit_action" class="action input_action ">
+				<input type="submit" value="Create Section" name="commit">
+			</li>
+			<li class="cancel">
+				<a href="/admin/sections">Cancel</a>
+		    </li>
+		</ol>
+	</fieldset>
+
+
+<% end %>
+<% else %>
+	<%= render :partial => "edit_form" %>
+<% end %>
+
+	<script type="text/javascript">
+	$(function($) {
+		$("#add_more_sections").click(function() {
+			$('#partial_content').append('<%= escape_javascript(render :partial => "sections")%>');
+		});
+	});
+	</script>

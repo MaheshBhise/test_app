@@ -1,0 +1,9 @@
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: wizprep_ production
+  pool: 10
+  host: localhost
+  username: admin
+  password: admin
+  min_messages: warning

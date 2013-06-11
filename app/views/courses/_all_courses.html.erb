@@ -1,0 +1,42 @@
+<p style="font-size:25px;font-weight:bold;margin-bottom:20px;">Course Selection</p>
+<!--div class="span12">
+<%# @courses = Course.all %>
+<%# @courses.each do |c| %>
+	<a href="javascript:void(0);" onclick="show_course('<%#= c.id %>');" class="btn btn-info" style="margin-bottom:5px;">
+		<%#= c.course_name %>
+	</a>
+	<%# end %>
+<%# @courses.each do |c| %>
+	<div class="row_fluid">
+	<div id="show_course_<%#= c.id%>" class="span12 course" style="display:none;">
+    	<div>
+    		<%#= render :partial=>"courses/show_course_details",:locals => {:cid => c.id } %>
+    	</div>
+	</div>  
+</div>
+<%# end %>
+</div-->
+<% @courses = Course.all %>
+<div class="accordion" id="accordion2">
+	<% @courses.each do |c| %>
+<div class="accordion-group">
+<div class="accordion-heading">
+<a class="accordion-toggle btn btn-info" data-toggle="collapse" data-parent="#accordion2" href="#<%= c.course_name %>" style="text-align:left">
+<%= c.course_name %>
+</a>
+</div>
+<div id="<%= c.course_name %>" class="accordion-body collapse">
+<div class="accordion-inner">
+<%= render :partial=>"courses/show_course_details",:locals => {:cid => c.id } %>
+</div>
+</div>
+</div>
+<% end %>
+</div>
+
+<script type="text/javascript">
+function show_course(cid){
+$('.course').hide();
+$('#show_course_'+cid).show();
+}
+</script>

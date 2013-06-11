@@ -1,0 +1,12 @@
+    <div id="part">
+     <%= semantic_fields_for "topic[]" do |f| %>  
+        <%= f.inputs "Add Topic Details" do %>
+            <%= f.input :topic_name, :required => true %>
+            <%= f.input :description, :input_html => { :class => 'autogrow', :rows => 10, :cols => 20  }%>
+            <%= f.input :video_link %>             
+            <%= f.input :only_paid,:label=>"Select Subscription Type",:as=>:select, :collection => {"Free"=>"0","Paid"=>"1"}, :include_blank => false,:default => "0", :required => true %> 
+        <input type="submit" onclick="$(this).parents().eq(2).html('');" id="remove" value="Remove" name="commit">
+        <% end %>
+    <% end %>
+    </div>
+

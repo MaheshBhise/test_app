@@ -1,0 +1,110 @@
+<div class="row-fluid" style="border-bottom:2px solid #969696;">
+  <div class="span4 offset4">
+    <h3><b>LOGIN</b></h3>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="span4 offset4" style="margin-top:20px;">
+    <%= link_to image_tag('/assets/fb_login.png',:style=>"width:100%;"), user_omniauth_authorize_path(:facebook) %>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="span4 offset4">
+    <h3><b>Or</b></h3>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="span4 offset4" style="margin-top:20px;">
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name),:html=>{:id=>"sign_in_form"}) do |f| %>
+  <div class="control-group">
+    <%#= f.label :email, :class => "control-label" %>
+    <div class="controls">
+     <%= f.email_field :email,:placeholder => "email or username", :class => "custom-field-size" %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%#= f.label :password, :class => "control-label" %>
+    <div class="controls">
+     <%= f.password_field :password,:placeholder => "password", :class => "custom-field-size" %>
+    </div>
+  </div>
+
+  <% if devise_mapping.rememberable? -%>
+    <div><%= f.check_box :remember_me ,:style=>"float:left;"%> <%= f.label :remember_me,:style=>"padding-left:20px;" %></div>
+  <% end -%>
+
+  <div><%= f.submit "Sign in", :class=>"btn btn-custom btn-large", :style=>"width:100%" %></div>
+  <%= render "links" %><br/>
+  <div>Don't have an account? <%= link_to "Sign up!", new_registration_path(resource_name) %></div>
+<% end %>
+</div>
+<!--div class="span6">
+  <div style="padding:5%;">
+      <h3 style="margin-bottom:10px;">No Account Yet?</h3>
+  <p><%#= link_to "Sign up", new_registration_path(resource_name), :class=>"btn btn-primary" %> </p>
+  <p>Or</p>
+  <p><%#= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) , :class=>"btn btn-primary"%></p>
+  </div>
+  </div-->
+</div>
+
+
+<script type="text/javascript">    
+$(document).ready(function(){  
+
+
+    $('#sign_in_form').validate(
+    {
+    
+    rules: {
+    "user[email]": {
+    required: true,
+    email: true
+    },
+    "user[password]":{
+      required: true,
+      minlength: 6,
+    },
+  },
+
+                    messages: {
+                    "user[password]": {
+                        required: "Please provide a password",
+                        minlength: "Your password must be at least 6 characters long"
+                    },
+                    "user[email]":{
+                      required: "Please enter a email address",
+                      email: "Please provide correct email address!"
+                    }, 
+                
+                },
+
+
+    showErrors: function (errorMap, errorList) {
+
+        $.each(this.successList, function (index, value) {
+            $(value).popover('hide');
+        });
+
+
+        $.each(errorList, function (index, value) {
+
+            console.log(value.message);
+
+            var _popover = $(value.element).popover({
+                trigger: 'manual',
+                placement: 'right',
+                content: value.message,
+            });
+
+            _popover.data('popover').options.content = value.message;
+            $(value.element).popover('show');
+
+        });
+
+    }  
+    });
+    }); // end document.ready
+</script>
+

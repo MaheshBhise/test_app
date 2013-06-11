@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'ALittlePot';
+    src: url('fonts/alittlepot.ttf');
+    src: url('fonts/alittlepot.eot?#iefix') format('embedded-opentype'),
+         url('fonts/alittlepot.woff') format('woff'),
+         url('fonts/alittlepot.ttf') format('truetype'),
+         url('fonts/alittlepot.svg#ALittlePot') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+

@@ -1,0 +1,25 @@
+<h1>Exam Page</h1>
+<%= @section.questions.count %> Questions
+<div id="partial_content" class="row-fluid">
+	<div  class="span10 offset1  exam-content">
+			<h4>Diagnostic Test</h4>
+		<div style="margin:20px;">
+	  <%= render :partial=>"show_exam",:locals => {:options => @options,:que => @question }%>
+	</div>
+	<%= link_to_function "NEXT","check_selected_answer($('.option_sel:checked').val())",{:class=>"btn btn-success btn-large"} %>
+    </div>
+</div>
+
+
+
+ <script>
+//   $(document).ready(function(){
+//     setInterval(updateSeats,10000);
+//  });
+//   function updateSeats(){
+//     $.ajax({
+//     url:  "/courses/log_diagnistic_data",
+//     type: "GET",
+//   });
+//   }
+// </script>

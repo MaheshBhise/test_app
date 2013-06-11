@@ -1,0 +1,221 @@
+<div class="container">
+  <div id="scroll">&nbsp;</div>
+  <div class="row_fluid">
+    <div class="span11 offset1" style="margin-top: 25px;margin-bottom:20px;">
+      <b style="color:#D22F03;font-size:25px;font-weight:bold;">The Strategy:&nbsp;&nbsp;</b><b style="color:#4B4B4B;font-size:25px;font-weight:bold;">How does WizPrep work?</b>
+    </div>
+  </div>
+  <!--div class="row_fluid">
+    <div class="span9 offset2">
+      <img src="assets/menu-courses.png" usemap="#urls" id="courses-tab", style="width:85%">
+           <map name="urls">
+        <area shape="rect" coords="10,0,115,100"  id="a1" href="javascript:void(0);" onclick="toggle_section('course_section');">
+        <area shape="rect" coords="205,0,305,100" id="a2" href="javascript:void(0);" onclick="toggle_section('diagnostics_section');">
+        <area shape="rect" coords="400,0,502,100" id="a3" href="javascript:void(0);" onclick="toggle_section('lessons_section');">
+        <area shape="rect" coords="595,0,695,100" id="a4" href="javascript:void(0);" onclick="toggle_section('reassess_section');">
+      </map>
+      <img src="assets/menu-diagnostics.png" usemap="#urls" id="diagnostics-tab", style="display:none;width:85%">
+           <img src="assets/menu-lessons.png" usemap="#urls" id="lessons-tab", style="display:none;width:85%">
+           <img src="assets/menu-releases.png" usemap="#urls" id="releases-tab", style="display:none;width:85%">
+    </div>
+  </div>
+</div-->
+
+  <div class="row_fluid">
+    <div class="span8 offset2">
+      <div style="float:left;margin:0;padding:0;width:25%;">
+        <a href="javascript:void(0);" onclick="change_tab('course_section');" >
+        <img src="assets/courses.png" id="courses-tab" onmouseover="this.src='assets/courses-act.png'"
+onmouseout="this.src='assets/courses.png'" style="width:100%;display:none;"/>
+        <img src="assets/courses-act.png" id="courses-tab-act" style="width:100%;display:block;"/>
+        </a>
+      </div>
+      <div style="float:left;margin:0;padding:0;width:25%;">
+        <a href="javascript:void(0);" onclick="change_tab('diagnostics_section');" >
+        <img src="assets/diagnostics.png" id="diagnostics-tab" onmouseover="this.src='assets/diagnostics-act.png'"
+onmouseout="this.src='assets/diagnostics.png'" style="width:100%;"/>
+        <img src="assets/diagnostics-act.png" id="diagnostics-tab-act" style="width:100%;display:none;"/>
+        </a>
+      </div>
+      <div style="float:left;margin:0;padding:0;width:25%;">
+        <a href="javascript:void(0);" onclick="change_tab('lessons_section');" >
+        <img src="assets/lessons.png" id="lessons-tab" onmouseover="this.src='assets/lessons-act.png'"
+onmouseout="this.src='assets/lessons.png'" style="width:100%;"/>
+        <img src="assets/lessons-act.png" id="lessons-tab-act" style="width:100%;display:none;"/>
+        </a>
+      </div>
+      <div style="float:left;margin:0;padding:0;width:25%;">
+        <a href="javascript:void(0);" onclick="change_tab('reassess_section');" >
+        <img src="assets/reassess.png" id="reassess-tab" onmouseover="this.src='assets/reassess-act.png'"
+onmouseout="this.src='assets/reassess.png'" style="width:100%;"/>
+        <img src="assets/reassess-act.png" id="reassess-tab-act" style="width:100%;display:none;"/>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<hr style="border-color:#969696;"/>
+
+<div class="container">
+  <div class="row_fluid">
+    <div class="span10 offset1">
+      <div id="tab_sections">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+
+  function change_tab(id){
+    /*
+    if(id == "course_section"){
+    scroll_to_strategy();
+    activate("courses");
+    $('#tab_sections').html("<%#= escape_javascript(render(:partial => 'courses/course_section')) %>");
+    }else if(id == 'diagnostics_section'){
+    scroll_to_strategy();
+    activate("diagnostics");
+    $('#tab_sections').html("<%#= escape_javascript(render(:partial => 'courses/diagnostics_section')) %>");
+    }else if(id == 'lessons_section'){
+    scroll_to_strategy();
+    activate("lessons");
+    $('#tab_sections').html("<%#= escape_javascript(render(:partial => 'courses/lessons_section')) %>");
+    }else if(id == 'reassess_section'){
+    scroll_to_strategy();
+    activate("reassess");
+    $('#tab_sections').html("<%#= escape_javascript(render(:partial => 'courses/reassess_section')) %>");
+  }*/
+    $.ajax( {
+                    url: '/courses/show_section',
+                    data: {id: id},
+                    success:  function(data){
+                      scroll_to_strategy();
+                      activate(id); }
+             }
+           )
+  }
+   var scroll_to_strategy = function() {
+    $('html, body').animate({
+      scrollTop: $("#scroll").offset().top
+    }, 100);
+  }
+
+/*
+  var toggle_tab = function(section) {
+    var section = section;
+    if(section == 'courses'){
+      scroll_to_strategy();
+      $("#course_section").show();
+      $("#diagnostics_section").hide();
+      $("#lessons_section").hide();
+      $("#reassess_section").hide();
+      activate(section);
+    } else if(section == 'diagnostics') {
+      scroll_to_strategy();
+      $("#course_section").hide();
+      $("#diagnostics_section").show();
+      $("#lessons_section").hide();
+      $("#reassess_section").hide();
+      activate(section);
+    } else if(section == 'lessons') {
+      scroll_to_strategy();
+      $("#course_section").hide();
+      $("#diagnostics_section").hide();
+      $("#lessons_section").show();
+      $("#reassess_section").hide();
+      activate(section);
+    } else if(section == 'reassess') {
+      scroll_to_strategy();
+      $("#course_section").hide();
+      $("#diagnostics_section").hide();
+      $("#lessons_section").hide();
+      $("#reassess_section").show();
+      activate(section);
+    }
+  }
+*/
+  var activate = function(section){
+    var section = section;
+    if(section == 'course_section') {
+      $('#courses-tab').hide();
+      $('#courses-tab-act').show();
+      $('#diagnostics-tab-act').hide();
+      $('#lessons-tab-act').hide();
+      $('#reassess-tab-act').hide();
+      $('#diagnostics-tab').show();
+      $('#lessons-tab').show();
+      $('#reassess-tab').show();
+    } else if(section == 'diagnostics_section') {
+      $('#diagnostics-tab').hide();
+      $('#diagnostics-tab-act').show();
+      $('#courses-tab-act').hide();
+      $('#lessons-tab-act').hide();
+      $('#reassess-tab-act').hide();
+      $('#courses-tab').show();
+      $('#lessons-tab').show();
+      $('#reassess-tab').show();
+    } else if(section == 'lessons_section') {
+      $('#lessons-tab').hide();
+      $('#lessons-tab-act').show();
+      $('#diagnostics-tab-act').hide();
+      $('#courses-tab-act').hide();
+      $('#reassess-tab-act').hide();
+      $('#diagnostics-tab').show();
+      $('#courses-tab').show();
+      $('#reassess-tab').show();
+    } else if(section == 'reassess_section') {
+      $('#reassess-tab').hide();
+      $('#reassess-tab-act').show();
+      $('#diagnostics-tab-act').hide();
+      $('#lessons-tab-act').hide();
+      $('#courses-tab-act').hide();
+      $('#diagnostics-tab').show();
+      $('#lessons-tab').show();
+      $('#courses-tab').show();
+    }
+  }
+
+  $(document).ready(function() {
+    //On page load must show select course section by default
+      $('#tab_sections').html("<%= escape_javascript(render(:partial => 'courses/course_section',:locals =>{:courses => Course.where('is_deleted = ?',false)})) %>");
+
+    //On mouse hover on the 4 sections selected section must be activated
+    $("#a1").hover(
+    function() {
+      //mouse over
+      $('#courses-tab').css('display', 'block');
+      $('#diagnostics-tab').css('display', 'none');
+      $('#lessons-tab').css('display', 'none');
+      $('#releases-tab').css('display', 'none');
+    });
+
+    $("#a2").hover(
+    function() {
+      //mouse over
+      $('#courses-tab').css('display', 'none');
+      $('#diagnostics-tab').css('display', 'block');
+      $('#lessons-tab').css('display', 'none');
+      $('#releases-tab').css('display', 'none');
+    });
+
+    $("#a3").hover(
+    function() {
+      //mouse over
+      $('#courses-tab').css('display', 'none');
+      $('#diagnostics-tab').css('display', 'none');
+      $('#lessons-tab').css('display', 'block');
+      $('#releases-tab').css('display', 'none');
+    });
+
+    $("#a4").hover(
+    function() {
+      //mouse over
+      $('#courses-tab').css('display', 'none');
+      $('#diagnostics-tab').css('display', 'none');
+      $('#lessons-tab').css('display', 'none');
+      $('#releases-tab').css('display', 'block');
+    });
+  })
+</script>

@@ -1,0 +1,105 @@
+  <% if controller.action_name == 'new' %>
+  <%= semantic_nested_form_for([:admin, @sub_topic], :remote => true) do |f|%>
+
+  <div id="course_section_topic_select">
+  <fieldset class="inputs">
+    <legend><span>Select Course - Section - Topic</span></legend>
+     <% if session[:topic_id].present? %>
+    <ol>
+      <li id="test_course_id_input" class="select input required">
+        <label for="test_course_id" class=" label">Course<abbr title="required">*</abbr></label>
+                 <% t = Topic.where("id=?", session[:topic_id]).first %>
+                 <%= t.section.course.course_name %>
+                 <%= hidden_field_tag 'post[course_id]', t.section.course.id %>
+      </li>
+    </ol>
+    <ol>
+      <li id="test_section_id_input" class="select input required">
+        <label for="test_course_id" class=" label">Section<abbr title="required">*</abbr></label>
+                 <%= t.section.section_name %>
+                 <%= hidden_field_tag 'post[section_id]', t.section.id %>
+      </li>
+    </ol>
+    <ol>
+      <li id="test_section_id_input" class="select input required">
+        <label for="test_course_id" class=" label">Topic<abbr title="required">*</abbr></label>
+                 <%= t.topic_name %>
+                 <%= hidden_field_tag 'post[topic_id]', t.id %>        
+      </li>
+    </ol>    
+<% else %>    
+    <ol>
+      <li id="test_course_id_input" class="select input required">
+        <label for="test_course_id" class=" label">Select Course<abbr title="required">*</abbr></label>
+        <%= collection_select(:post, :course_id, Course.all, :id, :course_name, :prompt => true) %>
+      </li>
+    </ol>
+    <ol>
+      <li id="test_section_id_input" class="select input required">
+        <label for="test_course_id" class=" label">Select Section<abbr title="required">*</abbr></label>
+        <%= collection_select(:post, :section_id, Section.all, :id, :section_name, :prompt => true) %>
+      </li>
+    </ol>
+    <ol>
+      <li id="test_section_id_input" class="select input required">
+        <label for="test_course_id" class=" label">Select Topic<abbr title="required">*</abbr></label>
+        <%= collection_select(:post, :topic_id, Topic.all, :id, :topic_name, :prompt => true) %>
+      </li>
+    </ol> 
+    <% end %>   
+  </fieldset> 
+  </div>
+
+  <div id="sub_topic_partial_content">
+    <div id="part">
+    <%= semantic_fields_for "sub_topic[]" do |f| %> 
+      <%= f.inputs "Add Sub-Topic Details" do %>
+        <%= f.input :sub_topic_name, :required => true %>
+        <%= f.input :description, :input_html => { :class => 'autogrow', :rows => 10, :cols => 20  }%>
+        <%= f.input :video_link %>             
+        <%= f.input :only_paid,:label=>"Select Subscription Type",:as=>:select, :collection => {"Free"=>"0","Paid"=>"1"},:include_blank => false,:required => true %> 
+      <% end %>
+    <% end %>
+    </div>
+  </div>
+
+
+  <fieldset class="actions">
+    <ol>
+      <li class="action input_action ">
+        <input type="submit" onclick="javascript:void(0);return false;" id="add_more_sub_topics" value="Add More SubTopics" name="commit">
+      </li>
+    </ol>
+  </fieldset>
+  <fieldset class="actions">
+    <ol>
+      <li id="topic_submit_action" class="action input_action ">
+        <input type="submit" value="Create SubTopic" name="commit">
+      </li>
+      <li class="cancel">
+        <a href="/admin/sub_topics">Cancel</a>
+      </li>        
+    </ol>
+  </fieldset>
+<% end %>
+
+<% else %>
+  <%= render :partial => "edit_form" %>
+<% end %>
+
+
+
+<script type="text/javascript">
+$(function($) {
+    $("#post_course_id").removeAttr('selected').find('option:first').attr('selected', 'selected');
+    $("#post_course_id, #post_section_id").change(function() {
+        $.ajax({url: '<%= url_for :action => 'get_sections_and_topics',:id=> '1' %>',
+        data: 'selected=' + this.value + '&distinct=' + this.id,
+        dataType: 'script'})
+    });
+
+  $("#add_more_sub_topics").click(function(){
+   $('#sub_topic_partial_content').append('<%= escape_javascript (render :partial => "sub_topic_partial_form") %>')
+  })
+});
+</script>

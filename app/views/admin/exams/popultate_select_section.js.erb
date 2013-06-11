@@ -1,0 +1,17 @@
+//alert('<%= @sel_id %>');
+<% if !@sections.blank? %>
+
+
+$("select.test_sections").each(function(){
+$("#"+this.id+' option:gt(0)').remove();
+//$(this).append($("<option></option>").attr("value",'').text('Please Select'));
+
+<% @sections.each do |section| %>
+//alert($(this).attr("id"));
+$("select "+'#'+this.id).append($("<option></option>").attr("value",'<%= section.id %>').text('<%= section.section_name %>'));
+<% end %>
+  
+});
+<% else %>
+$('.test_sections option:gt(0)').remove();
+<% end %>

@@ -1,0 +1,9 @@
+
+<% if !@sections.blank? %>
+$('#post_section_id option:gt(0)').remove();
+<% @sections.each do |section| %>
+$('#post_section_id').append($("<option></option>").attr("value",'<%= section.id %>').text('<%= section.section_name %>'));
+<% end %>
+<% else %>
+$('#post_section_id option:gt(0)').remove();
+<% end %>

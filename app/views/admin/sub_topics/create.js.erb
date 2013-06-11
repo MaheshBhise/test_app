@@ -1,0 +1,9 @@
+<%= blank_field = @invalid_data[0].empty? ? true : false  %>
+<% if @success %>
+<% flash[:notice] = 'SubTopics were successfully created.' %>
+window.location = "/admin/sub_topics";
+<% elsif !blank_field %>
+alert("Sorry! Duplicate entries found for Sub-topic name <%= @invalid_data.join(',') %>");
+<% else %>
+alert("Please enter valid SubTopic details");
+<% end %>

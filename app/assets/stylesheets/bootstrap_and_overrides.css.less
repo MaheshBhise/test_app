@@ -1,0 +1,404 @@
+@import "twitter/bootstrap/bootstrap";
+
+body { 
+    padding-top: 60px;
+    background-color: #DCDAD5;
+}
+
+@import "twitter/bootstrap/responsive";
+
+// Set the correct sprite paths
+@iconSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings.png");
+@iconWhiteSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings-white.png");
+
+// Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
+// Note: If you use asset_path() here, your compiled bootstrap_and_overrides.css will not
+//       have the proper paths. So for now we use the absolute path.
+@fontAwesomeEotPath: asset-path("fontawesome-webfont.eot?v=3.0.2");
+@fontAwesomeEotPath_iefix: asset-path("fontawesome-webfont.eot?#iefix&v=3.0.2");
+@fontAwesomeWoffPath: asset-path("fontawesome-webfont.woff?v=3.0.2");
+@fontAwesomeTtfPath: asset-path("fontawesome-webfont.ttf?v=3.0.2");
+
+// Font Awesome
+//@import "fontawesome";
+
+// Glyphicons
+//@import "twitter/bootstrap/sprites.less";
+
+// Your custom LESS stylesheets goes here
+//
+// Since bootstrap was imported above you have access to its mixins which
+// you may use and inherit here
+//
+// If you'd like to override bootstrap's own variables, you can do so here as well
+// See http://twitter.github.com/bootstrap/customize.html#variables for their names and documentation
+//
+// Example:
+// @linkColor: #ff0000;
+
+.main_body{
+    margin:0 auto 50px;
+    background-color:#FFFFFF;
+    padding:30px;
+    box-shadow:0 1px 2px 1px rgba(0, 0, 0, 0.25);
+
+}
+
+.main_body_home{
+    margin:0 auto;
+    padding:10px;
+
+}
+
+.btn-custom { background-color: hsl(15, 100%, 31%) !important; background-repeat: repeat-x; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff4305", endColorstr="#9e2700"); background-image: -khtml-gradient(linear, left top, left bottom, from(#ff4305), to(#9e2700)); background-image: -moz-linear-gradient(top, #ff4305, #9e2700); background-image: -ms-linear-gradient(top, #ff4305, #9e2700); background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ff4305), color-stop(100%, #9e2700)); background-image: -webkit-linear-gradient(top, #ff4305, #9e2700); background-image: -o-linear-gradient(top, #ff4305, #9e2700); background-image: linear-gradient(#ff4305, #9e2700); border-color: #9e2700 #9e2700 hsl(15, 100%, 26%); color: #fff !important; text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.33); -webkit-font-smoothing: antialiased; }
+
+.blue .active a,
+.blue .active a:hover,
+.blue .active a:focus {
+    background-color: #16887B;
+}
+
+
+.banner-main {
+    background-color: #16887B;
+    border-bottom: 5px solid white;
+    border-left: 5px solid white;
+    border-right: 5px solid white;
+    margin-top: -20px;
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2);
+    //box-shadow: 0 3px 100px rgba(0, 0, 0, 0.2) inset, 0 -3px 7px rgba(0, 0, 0, 0.2) inset;
+}
+
+.banner-text {
+    font-family:alittlepot;
+    font-size:70px;
+    padding-top:50px;
+    color:#FFFFFF;
+    line-height:80px;
+    padding: 40px 0 0 40px;
+}
+
+.navbar-inverse .navbar-inner {
+    background-color: #000000;
+    background-image: url("header-bg.jpg");
+    background-repeat: repeat-x;
+}
+
+.navbar-inner {
+    background-image: none;
+    background: url("header-bg.jpg") repeat-x;
+}
+
+.navbar-fixed-top .navbar-inner, .navbar-static-top .navbar-inner {
+    border-width: 0 0 0px;
+}
+
+.navbar .nav li a {
+    color: #FFFFFF;
+    padding-top: 14px;
+}
+
+.navbar .nav li a:focus {
+    color: #FFFFFF;
+    font-size:16px;
+}
+
+.navbar .nav li a:hover {
+    color: #FFFFFF;
+    font-size:16px;
+}
+.navbar .brand {
+    color: #FFFFFF;
+    padding-top: 14px;
+}
+
+.jumbotron p {
+    font-size: 35px;
+    font-weight: 200;
+    line-height: 1.25;
+    margin-bottom:35px;
+}
+
+.jumbotron {
+    background: #139623;
+    background-image: -moz-linear-gradient(right top,#139623 0%,#094F12 100%);
+    background-image: -webkit-gradient(linear,right top, left bottom,color-stop(0, #139623),color-stop(1, #094F12));
+    background: -webkit-linear-gradient(right top, #139623 0%, #094F12 100%);
+    background: -o-linear-gradient(right top, #139623 0%, #094F12 100%);
+    background: -ms-linear-gradient(right top, #139623 0%, #094F12 100%);
+    background: linear-gradient(right top, #139623 0%, #094F12 100%);
+
+    //background: -moz-linear-gradient(45deg, #139623 0%, #094F12 100%) repeat scroll 0 0 transparent;
+    //background: -webkit-gradient(45deg, 0% 0%, 0% 100%, from(#139623), to(#094F12), color-stop(.6,#333));
+    //filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#139623', endColorstr='#094F12',GradientType=0 ); /* IE6-9 */
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2) inset, 0 -3px 7px rgba(0, 0, 0, 0.2) inset;
+    color: #FFFFFF;
+    position: relative;
+    text-align: center;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 0 30px rgba(0, 0, 0, 0.075);
+    margin-left: -20px;
+    margin-right: -20px;
+    margin-top: -20px;
+    padding: 40px 20px;
+
+}
+.jumbotron a:hover {
+    color: #FFFFFF;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.25);
+}
+
+.jumbotron a {
+    -moz-transition: all 0.2s ease-in-out 0s;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.jumbotron .container {
+    z-index:2;
+    margin: 0 auto;
+    position:relative;
+}
+
+
+.masthead {
+    color: #FFFFFF;
+    margin-bottom: 0;
+    padding: 20px 0 20px;
+}
+
+.masthead h1 {
+    font-size:100px;
+    letter-spacing:-2px;
+    line-height:1;
+    margin: 0 0 0 0;
+}
+
+.masthead .btn {
+    -moz-transition: none 0s ease 0s;
+    border: 0 none;
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0 1px 5px rgba(0, 0, 0, 0.25);
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: 200;
+    padding: 10px 30px;
+}
+.masthead .btn:hover {
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0 1px 5px rgba(0, 0, 0, 0.25);
+}
+.masthead .btn:active {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) inset, 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.masthead-links {
+    list-style: none outside none;
+    margin: 0;
+}
+.masthead-links li {
+    color: rgba(255, 255, 255, 0.25);
+    display: inline;
+    padding: 0 10px;
+}
+
+.jumbotron:after {
+    background: url("bs-docs-masthead-pattern.png") repeat scroll center center transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    left: 0;
+    opacity: 0.4;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-size: 300px 300px;
+}
+
+.marketing-img {
+    display: block;
+    margin: 0 auto 30px;
+    max-height: 145px;
+}
+
+.marketing h2 {
+    font-weight: 200;
+    margin-bottom: 5px;
+    text-align:center;
+}
+.marketing p {
+    font-size: 16px;
+    line-height: 1.5;
+    text-align:center;
+}
+
+/* Large desktop */
+@media (min-width: 1200px) { 
+
+    .center_description{
+        width:1070px;
+        margin-right:auto;
+        margin-left:auto;
+    }
+
+    .main_body{
+        width:  940px;
+
+    }
+    .footer-content{
+        width:  940px;
+        margin:0 auto;
+
+
+    }
+    .main_body_home{
+        width:1100px;
+
+    }
+    .container{
+        width:100%;
+    }
+    .span9{
+        margin:0 auto;
+    }
+
+    .navbar .nav{
+        float:right;
+
+    }
+
+    .shiftl{
+        margin-right:9%;
+    }
+    .navbar .brand{
+        margin-left:10%;
+    }
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {
+
+    .banner-text {
+        font-size:40px;
+    }
+
+    .navbar .nav{
+        float:right;
+    }
+    .shiftl{
+        margin-right:9%;
+    }
+
+    .vSeperator {
+        display:none;
+    }
+
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+
+    .banner-text {
+        font-size:40px;
+    }
+
+    .jumbotron p {
+        font-size: 24px;
+    }
+    .jumbotron .btn {
+        font-size: 24px;
+    }
+    .masthead h1 {
+        font-size: 90px;
+        margin: 5px 0;
+    }
+
+    .vSeperator {
+        display:none;
+    }
+
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) { 
+
+    .jumbotron .container {
+        margin: 0 15px;
+    }
+    .jumbotron p {
+        font-size: 18px;
+    }
+    .jumbotron .btn {
+        font-size: 18px;
+        margin: 0 auto;
+        display:block;
+    }
+    .masthead h1 {
+        font-size: 45px;
+        margin-top:0px;
+    }
+
+    .masthead-links li {
+        padding: 0 5px;
+    }
+
+    .vSeperator {
+        display:none;
+    }
+}
+
+
+
+
+/* Added following two classes for overideing popover css and make it to look like a tooltip*/
+.popover-content  {
+    background-color: #2E2E2E;
+    border-radius: 4px 4px 4px 4px;
+    color: #FFFFFF;
+    max-width: 200px;
+    padding: 3px 8px;
+    text-align: center;
+    font-size: 11px;
+    text-decoration: none;
+}    
+
+.popover.right .popover-arrow {
+    border-bottom: 5px solid transparent;
+    border-right: 5px solid #2E2E2E;
+    border-top: 5px solid transparent;
+    left: 0;
+    margin-top: -5px;
+    top: 50%;
+} 
+
+.popover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1010;
+    display: none;
+    max-width: 276px;
+    padding: 1px;
+    text-align: left;
+    white-space: normal;
+    background-color: #ffffff;
+    /*
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    */
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    /*
+      -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+         -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+              box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    */
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+}
+
+.popover.right .arrow:after {
+    bottom: -10px;
+    left: 4px;
+    border-right-color: #2E2E2E;
+    border-left-width: 0;
+}   

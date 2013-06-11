@@ -1,0 +1,4 @@
+<h1><%= @course.course_name %>: <%= (@course.only_paid == "1") ? "Free Course" : "Paid Course" %></h1><br/>
+<%= @course.description unless @course.description.blank? %><br/><br/><br/>
+<%= image_tag("images.jpg")%><br/><br/><br/>
+<%= link_to "Join Course",{:action=>"join_course",:id=>"#{@course.id}"},{:class=>"btn btn-success btn-large"}%>

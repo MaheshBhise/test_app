@@ -1,0 +1,7 @@
+<div style="background-color:#F8F8F8;padding-left:20px;min-height:380px;padding-top:20px; ">
+  <div align="center" style="text-align:center;font-weight:bold;">
+    <%=  @exam.test_name %> Instructions <br/>
+    <%=  @exam.test_sections.sum(&:number_of_questions) %> Questions <br/>
+    Time - <%=  @exam.test_sections.sum(&:time_alloted).to_i %> minutes
+  </div>
+</div>

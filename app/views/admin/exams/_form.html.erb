@@ -1,0 +1,51 @@
+<%= semantic_nested_form_for [:admin, @exam] do |f|%> 
+<% if f.object.new_record? %>
+<% f.object.test_sections.build %>
+<% end %>
+<%= f.inputs "Test" do %>
+<%= f.input :course_id, :as => :select, :collection => Course.all.map{|b| [b.course_name,b.id]}, :required => true, :include_blank => "Please Select" %>
+<%= f.input :test_name, :required => true %>
+<%= f.input :only_paid,:label=>"Select Test Type",:as=>:radio, :collection => {"Free"=>false, "Paid"=>true} %>  
+<% end %> 
+<%= f.semantic_fields_for :test_sections do |h| %>
+<%=h.inputs "Test sections" do %>
+<% if f.object.new_record? %>
+<%= h.input :section_id, :as => :select, :collection => [], :required => true, :include_blank => "Please Select", :input_html => {:class => "test_sections", :onclick=>"test(this.id);"} %>
+<% else %>
+<%= h.input :section_id, :as => :select, :collection => Section.all.map{|b| [b.section_name,b.id]}, :required => true, :include_blank => "Please Select", :input_html => {:class => "test_sections", :onclick=>"test(this.id);"} %>
+<% end %>
+<%= h.input :number_of_questions %>
+<%= h.input :time_alloted %>
+<%= h.link_to_remove "Remove Section", :class=> "button remove" %>
+<% end %>
+
+<% end %>
+
+<%= f.link_to_add "Add More Sections", :test_sections, :class=> "button" %>
+<%= f.actions %>
+<% end %>
+
+<script type="text/javascript">
+$(function($) {
+
+    //$("#test_course_id").removeAttr('selected').find('option:first').attr('selected', 'selected');
+    $('.remove:first').hide();
+    $("#exam_course_id").change(function() {
+        $.ajax({url: '<%= url_for :action => 'popultate_select_section',:id=> '1' %>',
+            data: 'selected=' + this.value,
+            dataType: 'script'})
+    });
+
+    //$(".test_sections").removeAttr('selected').find('option:first').attr('selected', 'selected');
+
+});
+function test(id){
+      //alert($("#"+id+" :selected").text());
+      if($("#"+id+" :selected").val() == ""){
+           var section_id = $("#exam_course_id :selected").val();
+           $.ajax({url: '<%= url_for :action => 'get_sections_for_test',:id=> '1' %>',
+            data: {selected : section_id, sel_id : id},
+            dataType: 'script'})
+       }
+   };
+   </script>

@@ -1,0 +1,27 @@
+<%= semantic_form_for([:admin, @section]) do |f|%>
+
+	<div id="partial_content">
+		<div id="part"> 
+			<%= f.inputs "Edit Section Details" do %>
+			<%= f.input :course_id,:label=>"Select Section Type",:as=>:select, :collection => Course.all.map{|b| [b.course_name,b.id]}, :include_blank => false	 %>
+			<%= f.input :section_name %>  
+			<%= f.input :description, :input_html => { :class => 'autogrow', :rows => 10, :cols => 20  } %>  
+			<%= f.input :video_link %>  
+			<%= f.input :only_paid,:label=>"Select Section Type",:as=>:select, :collection => {"Paid"=>"1","Free"=>"0"},:selected=>'0', :include_blank => false  %>   
+			<% end %>
+		</div>
+	</div>
+
+
+	<fieldset class="actions">
+		<ol>
+			<li id="section_submit_action" class="action input_action ">
+				<input type="submit" value="Update Section" name="commit">
+			</li>
+			<li class="cancel">
+				<a href="/admin/sections">Cancel</a>
+		    </li>
+		</ol>
+	</fieldset>
+
+<% end %>

@@ -1,0 +1,19 @@
+
+<% if !@sections.blank? %>
+	$('#post_section_id option:gt(0)').remove();
+	<% @sections.each do |section| %>
+	$('#post_section_id').append($("<option></option>").attr("value",'<%= section.id %>').text('<%= section.section_name %>'));
+	<% end %>
+<% elsif !@topics.blank? %>
+	$('#post_topic_id option:gt(0)').remove();
+	<% @topics.each do |topic| %>
+	$('#post_topic_id').append($("<option></option>").attr("value",'<%= topic.id %>').text('<%= topic.topic_name %>'));
+	<% end %>
+<% else %>
+	<% if (@distinct == "post_section_id") %>
+	$('#post_topic_id option:gt(0)').remove();
+	<% else %>
+	$('#post_topic_id option:gt(0)').remove();
+	$('#post_section_id option:gt(0)').remove();
+	<% end %>
+<% end %>

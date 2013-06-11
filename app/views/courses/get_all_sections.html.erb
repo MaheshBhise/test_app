@@ -1,0 +1,4 @@
+<% @course.sections.all.each do |c| %>
+<%= link_to "#{c.section_name}",{:controller => "/courses", :action=>"start_exam",:id=>"#{c.id}"},{:class=>"btn btn-success btn-large"} %>
+<%= c.questions.count %> Questions
+<% end %>

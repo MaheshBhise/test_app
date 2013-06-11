@@ -1,0 +1,28 @@
+
+<% if !@sections.blank? %>
+	$('#question_section_id option:gt(0)').remove();
+	<% @sections.each do |section| %>
+	$('#question_section_id').append($("<option></option>").attr("value",'<%= section.id %>').text('<%= section.section_name %>'));
+	<% end %>
+<% elsif !@topics.blank? %>
+	$('#question_topic_id option:gt(0)').remove();
+	<% @topics.each do |topic| %>
+	$('#question_topic_id').append($("<option></option>").attr("value",'<%= topic.id %>').text('<%= topic.topic_name %>'));
+	<% end %>
+<% elsif !@sub_topics.blank?%>
+	$('#question_sub_topic_id option:gt(0)').remove();
+	<% @sub_topics.each do |sub_topics| %>
+	$('#question_sub_topic_id').append($("<option></option>").attr("value",'<%= sub_topics.id %>').text('<%= sub_topics.sub_topic_name %>'));
+	<% end %>
+<% else %>
+	<% if (@distinct == "question_section_id") %>
+	$('#question_topic_id option:gt(0)').remove();
+	$('#question_sub_topic_id option:gt(0)').remove();
+	<% elsif (@distinct == "question_topic_id")%>
+	$('#question_sub_topic_id option:gt(0)').remove();
+	<% else %>
+	$('#question_topic_id option:gt(0)').remove();
+	$('#question_section_id option:gt(0)').remove();
+	$('#question_sub_topic_id option:gt(0)').remove();
+	<% end %>
+<% end %>

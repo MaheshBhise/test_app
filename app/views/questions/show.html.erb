@@ -1,0 +1,80 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Question:</b>
+  <%= @question.question %>
+</p>
+
+<p>
+  <b>Image link:</b>
+  <%= @question.image_link %>
+</p>
+
+<p>
+  <b>Topic:</b>
+  <%= @question.topic_id %>
+</p>
+
+<p>
+  <b>Section:</b>
+  <%= @question.section_id %>
+</p>
+
+<p>
+  <b>Difficulty level:</b>
+  <%= @question.difficulty_level %>
+</p>
+
+<p>
+  <b>Correct answer:</b>
+  <%= @question.correct_answer %>
+</p>
+
+<p>
+  <b>Long explain:</b>
+  <%= @question.long_explain %>
+</p>
+
+<p>
+  <b>Video link:</b>
+  <%= @question.video_link %>
+</p>
+
+<p>
+  <b>Fake answer1:</b>
+  <%= @question.fake_answer1 %>
+</p>
+
+<p>
+  <b>Fake answer2:</b>
+  <%= @question.fake_answer2 %>
+</p>
+
+<p>
+  <b>Fake answer3:</b>
+  <%= @question.fake_answer3 %>
+</p>
+
+<p>
+  <b>Only paid:</b>
+  <%= @question.only_paid %>
+</p>
+
+<p>
+  <b>Hint1:</b>
+  <%= @question.hint1 %>
+</p>
+
+<p>
+  <b>Hint2:</b>
+  <%= @question.hint2 %>
+</p>
+
+<p>
+  <b>Hint3:</b>
+  <%= @question.hint3 %>
+</p>
+
+
+<%= link_to 'Edit', edit_question_path(@question) %> |
+<%= link_to 'Back', questions_path %>

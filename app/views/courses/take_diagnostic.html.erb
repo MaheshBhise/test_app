@@ -1,0 +1,82 @@
+<div class="span10 offset1" style="margin-top:20px;padding-left:20px;">
+  <h4><%= current_user.name.upcase %>'S DIAGNOSTIC TEST</h4>
+</div>
+<%#= @section.questions.count %>
+<div class="row-fluid">
+  <div class="span10 offset1 exam-content">
+    <div style="margin-top:10px;">
+      <span style="padding-left:20px;color:white;font-size:17px;font-weight:bold;">Diagnostic Test</span>   
+      <span style="padding-right:20px;float:right;color:white;font-size:16px;font-weight:bold;"><img src="/assets/timer.png" />&nbsp;<b id="timer"></b> |  1 of <%= @section.questions.count %></span>
+    </div>
+    <div style="margin:10px 20px;height:400px;overflow:auto;">
+      <div id="partial_content">
+        <%= render :partial=>"show_exam",:locals => {:options => @options,:que => @question }%>
+      </div>
+    </div>
+    <div style="text-align:right;margin:10px 20px;padding-bottom:7px">
+      <span style="float:left;color:white;font-size:16px;font-weight:bold;">
+        <img src="/assets/help.png"/>  <%= link_to "Help", '' , :style => "color:white;" %> |
+        <img src="/assets/exit.png" /> <a href="#myModal" role="button" style="color:white;" data-toggle="modal">Exit</a>
+      </span>
+      <%= link_to_function "NEXT","check_selected_answer($('.option_sel:checked').val())",{:class=>"btn btn-custom"} %>
+    </div>
+  </div>
+</div>
+
+<div id="myModal" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Exit Diagnostics</h3>
+  </div>
+  <div class="modal-body">
+    <p>Are you sure you want to exit this Diagnostic?</p>
+    <p>Click 'Yes' to save your test to resume later. Click 'No' to continue.</p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-custom" data-dismiss="modal" aria-hidden="true">No</button>
+    <button class="btn btn-custom">Yes</button>
+  </div>
+</div>
+
+<%
+seconds = @exam_time % 60
+minutes = (@exam_time / 60) % 60 %>
+<script type="text/javascript">
+  //var currentTime = new Date();
+  //var minutes = currentTime.getMinutes();
+  //var seconds = currentTime.getSeconds();
+  //var mins = 10 - Math.floor((minutes / 10) % 10);
+  //var secs = 60-seconds;
+  var mins = <%= @exam_time / 60 %>;
+  var secs = <%= @exam_time % 60 %>
+  countdown("timer", mins, secs);
+  function countdown(element, minutes, seconds) {
+    var time = minutes*60 + seconds;
+    var interval = setInterval(function() {
+      var el = document.getElementById(element);
+      if(time == 0) {
+        el.innerHTML = "countdown's over!";
+        clearInterval(interval);
+        return;
+      }
+      var minutes = Math.floor( time / 60 );
+      if (minutes < 10) minutes = "0" + minutes;
+      var seconds = time % 60;
+      if (seconds < 10) seconds = "0" + seconds;
+      var text = minutes + ':' + seconds;
+      el.innerHTML = text;
+      time--;
+    }, 1000);
+  }
+
+   $(document).ready(function(){
+       setInterval(updateExamSession,10000);
+    });
+     function updateExamSession(){
+       $.ajax({
+       url:  "/courses/log_exam_session",
+       type: "GET"
+     });
+    }
+</script>
+
