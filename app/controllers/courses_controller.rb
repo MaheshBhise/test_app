@@ -26,6 +26,8 @@ end
 
 def take_diagnostic
   current_user.initialize_exam(session[:exam_id])
+  user_attempted_exam_data = UserExamData.where(:user_id => current_user.id, :exam_id => session[:exam_id]).first
+  user_attempted_exam_data.update_attributes(:status => false)
   @exam_time = UserExamSession.where(:user_id => current_user.id, :exam_id => session[:exam_id]).first.time_remaining
 	get_question
 end

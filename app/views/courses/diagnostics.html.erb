@@ -19,8 +19,14 @@
     <pre style="background-color:#DCDAD5;border:none;;"><%= @exam.description.to_s.html_safe %></pre>
   </div>
   <div class="span4">
-
-    <%= link_to "Take Diagnostic",{:controller => "/courses", :action=>"exam_intro",:id=>"#{@exam.id}"},{:class=>"btn btn-custom btn-large"}%>
+    <% exam_status = UserExamData.check_exam_status(@exam.course_id, current_user.id) %>
+    <% if (exam_status && exam_status == UserExamData::COMPLETE)  %>
+    <%= link_to "View Result",{:controller => "/courses", :action=>"test_result"},{:class=>"btn btn-custom btn-large",}%>
+    <% elsif (exam_status && exam_status == UserExamData::INPROGRESS)  %>
+    <%= link_to "Inprogress",{:controller => "/courses", :action=>"exam_intro",:id=>"#{@exam.id}"},{:class=>"btn btn-custom btn-large"}%>
+    <% else %>
+    <%= link_to "Begin Test",{:controller => "/courses", :action=>"exam_intro",:id=>"#{@exam.id}"},{:class=>"btn btn-custom btn-large"}%>
+    <% end %>
   </div>
 </div>
 <% else %>

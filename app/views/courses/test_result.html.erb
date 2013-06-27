@@ -1,4 +1,5 @@
 <% user_exam_data = UserExamData.where("user_id = ? and exam_id = ?", current_user, session[:exam_id]).first %>
+<% user_exam_data.update_attributes(:status => true) %>
 <% exam_result = ExamResult.where("user_exam_data_id = ?", user_exam_data.id).select("section_id,count(*)").group(:section_id) %>
 <div class="span12" >&nbsp;</div>
 <div id="header_tabs" class="span12" style="font-size:22px;font-weight:bold;margin-bottom:20px;">

@@ -23,7 +23,6 @@ class User < ActiveRecord::Base
     if user_data.empty?
       sections = Exam.where("id = ?",exam_id).first.test_sections
       questions_per_section = {}
-      debugger
       sections.each do |section|
         questions_per_section[section.section_id] = section.number_of_questions
       end
