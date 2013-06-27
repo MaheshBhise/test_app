@@ -1,6 +1,11 @@
 MasteryNew::Application.routes.draw do
-  
+
+  authenticated :user do
+    root :to => "courses#my_courses"
+  end
+
   root :to => 'logins#index'
+  
   match 'courses/:id/course_info' => 'courses#course_info'
   resources :questions
   resources :courses do
@@ -13,6 +18,14 @@ MasteryNew::Application.routes.draw do
       get "log_exam_session"
       get "exam_intro"
       get "show_section"
+      get "my_courses"
+      get "view_all"
+      get "time_up"
+      get "test_result"
+      get "lessons"
+      get "diagnostics"
+      get "reassess"
+      get "show_subtopic_details"
     end
   end
   match 'courses/start_exam/:id' => 'courses#start_exam'
