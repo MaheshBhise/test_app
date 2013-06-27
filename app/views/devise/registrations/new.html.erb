@@ -1,98 +1,95 @@
-<script src="https://connect.facebook.net/en_US/all.js"></script>
-<div id="fb-root"></div>
-<div class="row-fluid" style="border-bottom:2px solid #969696;">
-  <div class="span4 offset4">
-    <h3><b>SIGN UP</b></h3>
-  </div>
-</div>
-<div id="hide_section">
-<div class="row-fluid">
-  <div class="span4 offset4" style="margin-top:20px;">
-    <%= link_to_function image_tag('/assets/fb_signup.png',:style=>"width:100%;"),"facelogin();"%>
-  </div>
-</div>
-<div class="row-fluid">
-  <div class="span4 offset4">
-    <h3><b>Or</b></h3>
-  </div>
-</div>
-</div>
-<div class="row-fluid">
-<div class="span4 offset4" style="padding-top:20px;">
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-<%= f.hidden_field :confirmed_at %>
-<%= f.hidden_field :provider %>
-  <div class="control-group">
-    <%#= f.label :name, :class => "control-label label-signup" %>
-    <div class="controls">
-      <%= f.text_field :name,:placeholder => "username", :class => "custom-field-size" %>
-    </div>
+
+
+<div class="span10 offset1">
+  <div class="sign_up_head" style="border-bottom:1px solid #969696;">
+    <h2>Sign up</h2>
   </div>
 
-  <div class="control-group">
-    <%#= f.label :email,  :class => "control-label label-signup" %>
-    <div class="controls">
-      <%= f.email_field :email,:placeholder => "email", :class => "custom-field-size" %>
-    </div>
-  </div>
+  <div class="container-fluid">
+    <div class="span9" style="padding-top:20px;border-right:1px solid #969696;">
+      <div class="span7">
+        <div id="hide_section">
+          <%= link_to_function image_tag('/assets/fb_signup.png',:style=>"width:100%;"),"facelogin();"%>
+          <h3 style="text-align:center;"><b>OR</b></h3>
+        </div>
+        <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+          <%= devise_error_messages! %>
+          <%= f.hidden_field :confirmed_at %>
+          <%= f.hidden_field :provider %>
+          <div class="control-group">
+  <%#= f.label :name, :class => "control-label label-signup" %>
+            <div class="controls">
+              <%= f.text_field :name,:placeholder => "name", :class => "custom-field-size" %>
+            </div>
+          </div>
 
-  <div class="control-group">
-    <%#= f.label :password,  :class => "control-label label-signup" %>
-    <div class="controls">
-      <%= f.password_field :password, :placeholder=> "password", :class => "custom-field-size"%>
-    </div>
-  </div>
+          <div class="control-group">
+  <%#= f.label :email,  :class => "control-label label-signup" %>
+            <div class="controls">
+              <%= f.email_field :email,:placeholder => "email", :class => "custom-field-size" %>
+            </div>
+          </div>
 
-  <div class="control-group">
-    <%#= f.label "Confirm password",  :class => "control-label label-signup" %>
-    <div class="controls">
-     <%= f.password_field :password_confirmation, :placeholder=> "confirm password", :class => "custom-field-size"%>
-    </div>
-  </div>
+          <div class="control-group">
+  <%#= f.label :password,  :class => "control-label label-signup" %>
+            <div class="controls">
+              <%= f.password_field :password, :placeholder=> "password", :class => "custom-field-size"%>
+            </div>
+          </div>
 
-  <!--div class="control-group">
-    <%#= f.label :security_question_id, :class => "control-label label-signup" %>
-    <div class="controls">
-      <select id="security_question_id" class="required" name="user[security_question_id]">
-        <option selected="" value="">Please select</option>
-        <%# @question = SecurityQuestion.all %>
-          <%#  for value in @question %>
-            <%# que = [" ","Grandfather's middle Name","First Date's Last Name","Favorite Place"]%>
-            <option value="<%#= value.id %>" > <%#= que[value.id] %></option>
-          <%# end %>
-      </select>
-    </div>
-  </div-->
+          <div class="control-group">
+  <%#= f.label "Confirm password",  :class => "control-label label-signup" %>
+            <div class="controls">
+              <%= f.password_field :password_confirmation, :placeholder=> "confirm password", :class => "custom-field-size"%>
+            </div>
+          </div>
 
-  <!--div class="control-group">
-    <%#= f.label :security_answer,  :class => "control-label label-signup" %>
-    <div class="controls">
-      <%#= f.text_field :security_answer, :placeholder=> "Security answer..." %>
-    </div>
-  </div-->
+          <!--div class="control-group">
+  <%#= f.label :security_question_id, :class => "control-label label-signup" %>
+            <div class="controls">
+              <select id="security_question_id" class="required" name="user[security_question_id]">
+                <option selected="" value="">Please select</option>
+  <%# @question = SecurityQuestion.all %>
+  <%#  for value in @question %>
+  <%# que = [" ","Grandfather's middle Name","First Date's Last Name","Favorite Place"]%>
+                    <option value="<%#= value.id %>" > <%#= que[value.id] %></option>
+  <%# end %>
+              </select>
+            </div>
+          </div-->
 
-  <!--div class="control-group">
-    <label class="checkbox control-label" style="width:90%;text-align:left;margin-left:25%;">
-      <div class="controls">
-        <input id="signup-agree" type="checkbox" value="1" required="required" name="agree">I agree to the <a target="tab1" href="javascript:void(0);" onclick="alert('Work in Progress');">Terms of Service</a>
+          <!--div class="control-group">
+  <%#= f.label :security_answer,  :class => "control-label label-signup" %>
+            <div class="controls">
+  <%#= f.text_field :security_answer, :placeholder=> "Security answer..." %>
+            </div>
+          </div-->
+
+          <div class="control-group">
+            <label class="checkbox control-label" style="width:90%;text-align:left;">
+              <div class="controls">
+                <input id="signup-agree" type="checkbox" value="1" required="required" name="agree"/>I agree to the <a target="tab1" href="javascript:void(0);" onclick="alert('Work in Progress');">Terms of Service</a>
+              </div>
+            </label>
+          </div>
+
+          <div><%= f.submit "Sign up", :class=>"btn btn-custom btn-large", :style=>"width:100%" %></div>
+        <% end %>
+
       </div>
-    </label>
-  </div-->
-
-  <div><%= f.submit "Sign up", :class=>"btn btn-custom btn-large", :style=>"width:100%" %></div>
-<% end %>
-</div>
- </div>
-<!--div class="span3">
-  <div style="padding:10%;line-height:18px;">
-  <h3>Have an account?</h3>
-  <p>If you already have password. Please </p> 
-  <p><%#= link_to "Sign in", new_session_path(resource_name), :class=>"btn btn-success" %> </p>
+    </div>
+    <div class="span3">
+      <div style="">
+        <h3>Have an account?</h3>
+        <p><%= link_to "Sign in", new_session_path(resource_name), :class=>"btn btn-custom" %> </p>
+      </div>
+    </div>
   </div>
-</div-->
 
 <%#= render "links" %>
+  <div id="fb-root"></div>
+</div>
+<script src="https://connect.facebook.net/en_US/all.js"></script>
 <script>
   FB.init({
     appId  : '550898968283757',
@@ -102,139 +99,139 @@
   });
 </script>
 <script type="text/javascript">
-$(document).ready(function(){   
-   $.validator.addMethod("Nameformat", function(value, element) {  
-    return this.optional(element) || /^[a-zA-Z]+$/i.test(value);  
+  $(document).ready(function(){
+    $.validator.addMethod("Nameformat", function(value, element) {
+      return this.optional(element) || /^[a-zA-Z]+$/i.test(value);
     },"Please enter only characters");  
 
     $('#new_user').validate(
     {
     
-    rules: {
-    "user[email]": {
-    required: true,
-    email: true
-    },
-    "user[name]": {
-    required: true,
-    minlength: 1,
-    Nameformat: true,
-    },
-    "user[password]":{
-      required: true,
-      minlength: 6,
-    },
-    "user[password_confirmation]":{
-      required: true,
-      minlength: 6, 
-      equalTo: "#user_password",     
-    },
-    "user[security_question_id]": {
-      required: true,
+      rules: {
+        "user[email]": {
+          required: true,
+          email: true
         },
-    "user[security_answer]":{
-      required: true,
-    },
-    "agree": "required",
-  },
+        "user[name]": {
+          required: true,
+          minlength: 1,
+          Nameformat: true,
+        },
+        "user[password]":{
+          required: true,
+          minlength: 6,
+        },
+        "user[password_confirmation]":{
+          required: true,
+          minlength: 6,
+          equalTo: "#user_password",
+        },
+        "user[security_question_id]": {
+          required: true,
+        },
+        "user[security_answer]":{
+          required: true,
+        },
+        "agree": "required",
+      },
 
-                    messages: {
-                    "user[name]": {
-                      required: "Please enter your full name",
-                      minlength: "Please enter your full name",
-                    },
-                    "user[password]": {
-                        required: "Please provide a password",
-                        minlength: "Your password must be at least 6 characters long"
-                    },
-                    "user[password_confirmation]":{
-                        required: "Please provide a confirm password",
-                        minlength: "Your password must be at least 6 characters long",
-                        equalTo: "Sorry! Password doesn't match"
-                    },
-                    "user[email]":{
-                      required: "Please enter a email address",
-                      email: "Please provide correct email address!"
-                    }, 
-                    "user[security_question_id]":{
-                      required: "Please select any security question",
-                    },
-                    "user[security_answer]":{
-                      required: "Please enter security answer",
-                    },
-                   "agree": "Please agree to our Terms"
-                },
+      messages: {
+        "user[name]": {
+          required: "Please enter your full name",
+          minlength: "Please enter your full name",
+        },
+        "user[password]": {
+          required: "Please provide a password",
+          minlength: "Your password must be at least 6 characters long"
+        },
+        "user[password_confirmation]":{
+          required: "Please provide a confirm password",
+          minlength: "Your password must be at least 6 characters long",
+          equalTo: "Sorry! Password doesn't match"
+        },
+        "user[email]":{
+          required: "Please enter a email address",
+          email: "Please provide correct email address!"
+        },
+        "user[security_question_id]":{
+          required: "Please select any security question",
+        },
+        "user[security_answer]":{
+          required: "Please enter security answer",
+        },
+        "agree": "Please agree to our Terms"
+      },
 
-    showErrors: function (errorMap, errorList) {
+      showErrors: function (errorMap, errorList) {
 
         $.each(this.successList, function (index, value) {
-            $(value).popover('hide');
+          $(value).popover('hide');
         });
 
 
         $.each(errorList, function (index, value) {
 
-            console.log(value.message);
+          console.log(value.message);
 
-            var _popover = $(value.element).popover({
-                trigger: 'manual',
-                placement: 'right',
-                content: value.message,
-            });
+          var _popover = $(value.element).popover({
+            trigger: 'manual',
+            placement: 'right',
+            content: value.message,
+          });
 
-            _popover.data('popover').options.content = value.message;
-            $(value.element).popover('show');
+          _popover.data('popover').options.content = value.message;
+          $(value.element).popover('show');
 
         });
 
-    }                
-//TOOLTIP
-    //    showErrors: function (errorMap, errorList) {
+      }
+      //TOOLTIP
+      //    showErrors: function (errorMap, errorList) {
 
-    //     $.each(this.successList, function (index, value) {
-    //         $(value).tooltip('hide');
-    //     });
+      //     $.each(this.successList, function (index, value) {
+      //         $(value).tooltip('hide');
+      //     });
 
 
-    //     $.each(errorList, function (index, value) {
-    //       console.log(this.message+value.message);
+      //     $.each(errorList, function (index, value) {
+      //       console.log(this.message+value.message);
  
  
-    //         $("#"+value.element.id).tooltip({
-    //             trigger: 'manual',
-    //             placement: 'right',
-    //             title: value.message,
-    //         });
-    //       $("#user_email").data('tooltip').options.title = value.message;
-    //        $("#"+value.element.id).tooltip('show');
+      //         $("#"+value.element.id).tooltip({
+      //             trigger: 'manual',
+      //             placement: 'right',
+      //             title: value.message,
+      //         });
+      //       $("#user_email").data('tooltip').options.title = value.message;
+      //        $("#"+value.element.id).tooltip('show');
 
-    //     });
+      //     });
 
-    // }
+      // }
     });
-    }); // end document.ready
+  }); // end document.ready
 </script>
 <script type="text/javascript">
   function facelogin(){
-  FB.login(function(re) {
-    if (re.authResponse)
-                    {
-                        FB.api('/me', function(rr) {
-                            $("#user_name").val(rr.first_name);
-                            $("#user_email").val(rr.email);
-                            $("#user_confirmed_at").val('<%= Time.now %>');
-                            $("#user_provider").val("facebook");
-                            $("#hide_section").hide();
-                        });
+    FB.login(function(re) {
+      if (re.authResponse)
+      {
+        FB.api('/me', function(rr) {
+          $("#user_name").val(rr.first_name);
+          $("#user_email").val(rr.email);
+          $("#user_confirmed_at").val('<%= Time.now %>');
+          $("#user_provider").val("facebook");
+          $("#hide_section").hide();
+        });
                         
-                    }
-                    else
-                    {
-                        document.getElementById("status").value = "NOT AUTHORIZED";
-                        history.go(-1);
-                        if (debug) console.log("NOT AUTHORIZED");
-                    }
-                },
-                {scope: 'email'});
+      }
+      else
+      {
+        document.getElementById("status").value = "NOT AUTHORIZED";
+        history.go(-1);
+        if (debug) console.log("NOT AUTHORIZED");
+      }
+    },
+    {scope: 'email'});
   }
 </script>

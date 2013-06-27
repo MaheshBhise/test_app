@@ -1,10 +1,10 @@
-<div class="row_fluid">
-  <div class="span8" style="min-height:300px;border-right:1px solid black;margin-bottom:10px;">
+<!--div class="row_fluid">
+  <div class="span8" style="min-height:300px;border-right:1px solid black;margin-bottom:10px;"-->
     <% course = Course.find_by_id(cid)%>
-    <pre style="background-color:#DCDAD5;border:none;;"><%= course.description.to_s.html_safe %></pre>
-  </div>
-  <div class="span4">
+    <pre style="background-color:inherit;border:none;;"><%= course.description.to_s.html_safe %></pre>
+  <!--/div>
+  <!--div class="span4">
 
-    <%= link_to "Take Diagnostic",{:controller => "/courses", :action=>"exam_intro",:id=>"#{course.id}"},{:class=>"btn btn-custom btn-large"}%>
-  </div>
-</div>
+    <%#= link_to "Take Diagnostic",{:controller => "/courses", :action=>"exam_intro",:id=>"#{course.id}"},{:class=>"btn btn-custom btn-large"}%>
+  </div-->
+<!--/div-->

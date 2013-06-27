@@ -1,0 +1,40 @@
+<div class="span12" >&nbsp;</div>
+<div id="header_tabs" class="span12" style="font-size:22px;font-weight:bold;margin-bottom:20px;">
+  <ul>
+    <li class="badge"><a href="/courses/my_courses">1.Select a course</a></li>
+    <li class="badge"><a href="/courses/diagnostics">2.Take Diagnostic</a></li>
+    <li class="badge"><a href="/courses/lessons">3.Lessons & Practice</a></li>
+    <li class="badge badge-blue"><a href="/courses/reassess">4.Reassess</a></li>
+  </ul>
+</div>
+
+<div class="span12">
+  <p style="font-size:22px;font-weight:bol;padding-bottom:8px;border-bottom:1px solid grey;">My Exams</p>
+</div>
+<% if @exams.present? %>
+
+<% @exams.each do |e| %>
+<div class="span12 course-listing" style="border-bottom:1px solid grey;">
+  <div style="width:79%;float:left;" class="expandable" >
+    <p style="font-size:18px;font-weight:bold;"><%= e.test_name %></p>
+    <p>
+    <pre style="background-color:#DCDAD5;border:none;;"><%= e.description.to_s.html_safe %></pre>
+    </p>
+  </div>
+  <div style="width:19%;float:left;padding-left:5px;">
+    <p>&nbsp;</p>
+    <p><%= link_to "Begin Test",{:controller => "/courses", :action=>"exam_intro",:id=>"#{e.id}"},{:class=>"btn btn-custom"}%></p>
+  </div>
+</div>
+<% end %>
+
+<% else %>
+
+<div class="span12" style="text-align:center;">
+    <p>&nbsp;</p>
+    <p>No exam found for this course.</p>
+    <p></p>
+</div>
+
+
+<% end %>

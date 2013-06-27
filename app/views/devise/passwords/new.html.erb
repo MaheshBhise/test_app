@@ -3,10 +3,57 @@
 <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+  <div><%= f.email_field :email, :placeholder => "Enter your email address." %></div>
 
-  <div><%= f.submit "Send me reset password instructions" %></div>
+  <div><%= f.submit "Reset Password", {:class => "btn btn-custom"} %></div>
 <% end %>
 
 <%= render "links" %>
+
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#new_user').validate(
+    {
+
+    rules: {
+    "user[email]": {
+    required: true,
+    email: true
+    }
+  },
+
+                    messages: {
+                    "user[email]":{
+                      required: "Please enter a email address",
+                      email: "Please provide correct email address!"
+                    }
+                  },
+
+    showErrors: function (errorMap, errorList) {
+
+        $.each(this.successList, function (index, value) {
+            $(value).popover('hide');
+        });
+
+
+        $.each(errorList, function (index, value) {
+
+            console.log(value.message);
+
+            var _popover = $(value.element).popover({
+                trigger: 'manual',
+                placement: 'right',
+                content: value.message,
+            });
+
+            _popover.data('popover').options.content = value.message;
+            $(value.element).popover('show');
+
+        });
+
+    }
+    });
+    }); // end document.ready
+</script>

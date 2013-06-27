@@ -1,0 +1,62 @@
+<div class="span12" >&nbsp;</div>
+<div id="header_tabs" class="span12" style="font-size:22px;font-weight:bold;margin-bottom:20px;">
+  <ul>
+    <li class="badge"><a href="/courses/my_courses">1.Select a course</a></li>
+    <li class="badge"><a href="/courses/diagnostics">2.Take Diagnostic</a></li>
+    <li class="badge badge-blue"><a href="/courses/lessons">3.Lessons & Practice</a></li>
+    <li class="badge"><a href="/courses/reassess">4.Reassess</a></li>
+  </ul>
+</div>
+
+<div class="span12">
+<p style="font-size:22px;font-weight:bold;margin-bottom:20px;">LESSONS & PRACTICE TESTS</p>
+<p style="margin-bottom:20px;">Based on your Diagnostics Test results, here's your 'Plan' to strengthen particular topics. Incase you'd like to go through all the topics, click on 'Full' to see lesson plans and practice tests for all topics.</p>
+</div>
+<div class="span12" style="border-bottom:1px solid grey;">
+  <div style="width:10%;float:left;">Week</div>
+  <div style="width:40%;float:left;">Topic</div>
+  <div style="width:10%;float:left;">Lesson</div>
+  <div style="width:20%;float:left;">Practice Test</div>
+  <div style="width:20%;float:left;">Progress</div>
+</div>
+
+<% if @sub_topics.present? %>
+<% i = 0 %>
+<% @sub_topics.each do |t| %>
+<div class="span12" style="border-bottom:1px solid grey;">
+  <div style="width:10%;float:left;"><%= i+=1 %></div>
+  <div style="width:40%;float:left;"><%= link_to t.sub_topic_name, :controller => "courses",:action => "show_subtopic_details",:id => t.id%></div>
+  <div style="width:10%;float:left;"><a href="#myVedioModal" role="link" class="btn" data-toggle="modal">Launch</a></div>
+  <div style="width:20%;float:left;"></div>
+  <div style="width:20%;float:left;"></div>
+</div>
+<% end %>
+<% else %>
+<div class="span12" style="text-align:center;">
+    <p>&nbsp;</p>
+    <p>No lessons found for this course.</p>
+    <p></p>
+</div>
+<% end %>
+
+
+<!-- Modal -->
+<div id="myVedioModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+<div class="modal-body">
+
+<!--iframe width="520" height="390" frameborder="0" allowfullscreen=""></iframe-->
+</div>
+
+</div>
+
+
+<script type="text/javascript">
+$('#myVedioModal').on('show', function () {
+  $('div.modal-body').html('<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><iframe src="http://www.youtube.com/v/itTskyFLSS8&amp;rel=0&amp;autohide=1&amp;showinfo=0&amp;" width="500" height="281" frameborder="0" allowfullscreen=""></iframe>');
+});
+$('#myVedioModal').on('hide', function () {
+$('div.modal-body').html('&nbsp;');
+});
+</script>
+

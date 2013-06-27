@@ -1,2 +1,4 @@
-
+<% if @question_count == 1 %>
+$('#next_button').html('<%= link_to 'Finish', {:controller => 'courses', :action => 'test_result'}, {:class=>"btn btn-custom"} %>')
+<% end %>
 $('#partial_content').html('<%= escape_javascript(render :partial=>"show_exam",:locals => {:options => @options,:que => @question })%>');

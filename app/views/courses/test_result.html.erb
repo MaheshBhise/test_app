@@ -1,0 +1,29 @@
+<% user_exam_data = UserExamData.where("user_id = ? and exam_id = ?", current_user, session[:exam_id]).first %>
+<% exam_result = ExamResult.where("user_exam_data_id = ?", user_exam_data.id).select("section_id,count(*)").group(:section_id) %>
+<div class="span12" >&nbsp;</div>
+<div id="header_tabs" class="span12" style="font-size:22px;font-weight:bold;margin-bottom:20px;">
+  <ul>
+    <li class="badge"><a href="/courses/my_courses">1.Select a course</a></li>
+    <li class="badge  badge-blue"><a href="/courses/diagnostics">2.Take Diagnostic</a></li>
+    <li class="badge"><a href="/courses/lessons">3.Lessons & Practice</a></li>
+    <li class="badge"><a href="/courses/reassess">4.Reassess</a></li>
+  </ul>
+</div>
+
+<div class="span12">
+<p style="font-size:22px;font-weight:bold;margin-bottom:20px;">Diagnostics Result</p>
+<div class="span12" style="border-bottom:1px solid grey;">
+  <div style="width:20%;float:left;">Section</div>
+  <div style="width:20%;float:left;">Questions Answered</div>
+  <div style="width:20%;float:left;">Correct Answers</div>
+  <div style="width:20%;float:left;">Percent Correct</div>
+</div>
+<% exam_result.each do |i| %>
+<div class="span12" style="border-bottom:1px solid grey;">
+  <div style="width:20%;float:left;"><%= Section.find_by_id(i.section_id).section_name %></div>
+  <div style="width:20%;float:left;"><%= i.count %></div>
+  <div style="width:20%;float:left;"><%= count = ExamResult.where("section_id = ? and correct = true",i.section_id).count %></div>
+  <div style="width:20%;float:left;"><%= (count.to_f*100)/i.count.to_f %> %</div>
+</div>
+<% end %>
+</div>

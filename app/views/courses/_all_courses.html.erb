@@ -16,7 +16,7 @@
 </div>
 <%# end %>
 </div-->
-<% @courses = Course.all %>
+<% @courses = Course.where('is_deleted = ?',false)%>
 <div class="accordion" id="accordion2">
 	<% @courses.each do |c| %>
 <div class="accordion-group">

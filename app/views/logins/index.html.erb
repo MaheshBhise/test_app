@@ -26,8 +26,8 @@
       <div style="float:left;margin:0;padding:0;width:25%;">
         <a href="javascript:void(0);" onclick="change_tab('course_section');" >
         <img src="assets/courses.png" id="courses-tab" onmouseover="this.src='assets/courses-act.png'"
-onmouseout="this.src='assets/courses.png'" style="width:100%;display:none;"/>
-        <img src="assets/courses-act.png" id="courses-tab-act" style="width:100%;display:block;"/>
+onmouseout="this.src='assets/courses.png'" style="width:100%;display:block;"/>
+        <img src="assets/courses-act.png" id="courses-tab-act" style="width:100%;display:none;"/>
         </a>
       </div>
       <div style="float:left;margin:0;padding:0;width:25%;">
@@ -179,7 +179,7 @@ onmouseout="this.src='assets/reassess.png'" style="width:100%;"/>
 
   $(document).ready(function() {
     //On page load must show select course section by default
-      $('#tab_sections').html("<%= escape_javascript(render(:partial => 'courses/course_section',:locals =>{:courses => Course.where('is_deleted = ?',false)})) %>");
+      //$('#tab_sections').html("<%#= escape_javascript(render(:partial => 'courses/course_section',:locals =>{:courses => Course.where('is_deleted = ?',false)})) %>");
 
     //On mouse hover on the 4 sections selected section must be activated
     $("#a1").hover(

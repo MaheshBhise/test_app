@@ -36,19 +36,32 @@
 <%#= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
   </head>
   <body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
-    <div class="modal hide fade alert alert-error" id="alert-modal-window">
-      <button class="close" data-dismiss="modal" type="button">×</button>
-      <div class="modal-body center">
-        <%= alert unless alert.blank? %>
+   <% unless alert.blank? %>
+    <div class="alert alert-error" id="alert-modal-window">
+      <button class="close" data-dismiss="alert" type="button">×</button>
+      <div class="center">
+        <%= alert %>
       </div>
     </div>
-    <div class="modal hide fade alert" id="notice-modal-window">
-      <button class="close" data-dismiss="modal" type="button">×</button>
+    <% end %>
+
+    <% unless notice.blank? %>
+     <div class="alert" id="notice-modal-window">
+      <button class="close" data-dismiss="alert" type="button">×</button>
       <div class="modal-body center">
-        <%= notice unless notice.blank?%>
+        <%= notice %>
       </div>
     </div>
+    <% end %>
 
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
@@ -58,7 +71,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <%= link_to "WizPrep", root_path ,:class=>"shiftr brand" %>
+          <%= link_to "WizPrep", {:controller => '/courses', :action => 'my_courses'} ,:class=>"shiftr brand" %>
           <!--a class="shiftr brand" href="#">WizPrep</a-->
           <div class="nav-collapse shiftl">
             <ul class="nav">
@@ -102,7 +115,9 @@
       <div class="row-fluid">
 
         <div class="span12" style="min-height:650px;">
+          <div class="main_body_home">
           <%= yield %>
+          </div>
         </div>
       </div><!--/row-->
 
@@ -131,12 +146,12 @@
       //    e.preventDefault();
       //});
 
-<% if (alert) %>
-      $('#alert-modal-window').modal('show');
-<% elsif notice  %>
-      $('#notice-modal-window').modal('show');
-<% end %>
-  });
+        <% if (alert && !alert.blank?) %>
+            $('#alert-modal-window').alert();
+        <% elsif (notice && !notice.blank?)  %>
+            $('#notice-modal-window').alert();
+        <% end %>
+    });
   </script>
 </body>
 </html>

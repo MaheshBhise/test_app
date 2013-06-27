@@ -1,0 +1,32 @@
+
+<div class="span12" >&nbsp;</div>
+<div id="header_tabs" class="span12" style="font-size:22px;font-weight:bold;margin-bottom:20px;">
+  <ul>
+    <li class="badge"><a href="/courses/my_courses">1.Select a course</a></li>
+    <li class="badge badge-blue"><a href="/courses/diagnostics">2.Take Diagnostic</a></li>
+    <li class="badge"><a href="/courses/lessons">3.Lessons & Practice</a></li>
+    <li class="badge"><a href="/courses/reassess">4.Reassess</a></li>
+  </ul>
+</div>
+
+<div class="span12" >
+<p style="font-size:22px;font-weight:bold;margin-bottom:20px;">DIAGNOSTICS TEST</p>
+
+<% if !@exam.nil? %>
+<%= @exam.test_name %>
+<div class="row_fluid">
+  <div class="span8" style="min-height:300px;border-right:1px solid black;margin-bottom:10px;"-->
+    <pre style="background-color:#DCDAD5;border:none;;"><%= @exam.description.to_s.html_safe %></pre>
+  </div>
+  <div class="span4">
+
+    <%= link_to "Take Diagnostic",{:controller => "/courses", :action=>"exam_intro",:id=>"#{@exam.id}"},{:class=>"btn btn-custom btn-large"}%>
+  </div>
+</div>
+<% else %>
+    <p>&nbsp;</p>
+    <p>No diagnostic found for this course.</p>
+    <p></p>
+<% end %>
+
+</div>

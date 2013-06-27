@@ -1,0 +1,33 @@
+
+<div class="span12" >&nbsp;</div>
+<% if @courses.blank? %>
+  <div class="alert span10">Sorry!! No Course found</div>
+<% else %>
+  <% @courses.each do |c| %>
+    <div class="span12 course-listing" style="border-bottom:1px solid grey;">
+      <div style="width:79%;float:left;" class="expandable" ><p style="font-size:18px;font-weight:bold;"><%= c.course_name %></p><p><%= render :partial=>"courses/show_course_details",:locals => {:cid => c.id } %></p></div>
+      <div style="width:19%;float:left;padding-left:5px;">
+        <p>&nbsp;</p>
+        <p><%= link_to "Register", {:controller => "/courses", :action=>"join_course",:id=>"#{c.id}"},{:class=>"btn btn-custom"}%></p></div>
+    </div>
+  <% end %>
+<% end %>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+  // simple example, using all default options unless overridden globally
+  //$('div.expandable p').expander();
+
+  // *** OR ***
+
+  // override default options (also overrides global overrides)
+  $('div.expandable').expander({
+    slicePoint:       200,  // default is 100
+    expandPrefix:     '...', // default is '... '
+    expandText:       'more', // default is 'read more'
+    collapseTimer:    0, // re-collapses after 5 seconds; default is 0, so no re-collapsing
+    userCollapseText: '...less'  // default is 'read less'
+  });
+
+});
+</script>

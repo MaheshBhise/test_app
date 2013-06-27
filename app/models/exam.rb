@@ -12,5 +12,6 @@ class Exam < ActiveRecord::Base
 
       def display_name
     	"#{self.test_name}"
-  	  end       
+  	  end
+
 end

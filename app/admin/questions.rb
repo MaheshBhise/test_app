@@ -94,6 +94,9 @@ ActiveAdmin.register Question do
         (v.only_paid==0) ? "Free" : "Paid"
       end      
       column :difficulty_level
+      column 'Added By' do |v|
+        v.admin_user.email unless v.admin_user_id.nil?
+      end
       column do |v|
         div style: 'color:red;text-align: center;' do 
           "Deleted" if (v.is_deleted==TRUE)

@@ -60,6 +60,8 @@
   <%= f.input :hint1, :input_html=>{:class => "tinymce"} %> 
   <%= f.input :hint2, :input_html=>{:class => "tinymce"} %>
   <%= f.input :hint3, :input_html=>{:class => "tinymce"} %>
+  <%= f.hidden_field :admin_user_id, :value => current_admin_user.id %>
+
 <!--   <li id="image_picture" class="text input optional">
     <label class=" label" for="image_picture">Question Image</label>
     <input id="image_picture" type="file" name="image[picture]">

@@ -4,6 +4,8 @@ class Course < ActiveRecord::Base
   has_many :sub_topics, :through => :topics
   has_many :questions, :through => :sub_topics
   has_many :exams
+  has_many :user_courses
+  has_many :users, :through => :user_courses
 
   attr_accessible :course_name, :description, :max_q_level, :only_paid, :video_link
   

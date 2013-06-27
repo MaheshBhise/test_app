@@ -1,0 +1,31 @@
+
+<div class="span12" >&nbsp;</div>
+<div id="header_tabs" class="span12" style="font-size:22px;font-weight:bold;margin-bottom:20px;">
+  <ul>
+    <li class="badge badge-blue"><a href="/courses/my_courses">1.Select a course</a></li>
+    <li class="badge"><a href="/courses/diagnostics">2.Take Diagnostic</a></li>
+    <li class="badge"><a href="/courses/lessons">3.Lessons & Practice</a></li>
+    <li class="badge"><a href="/courses/reassess">4.Reassess</a></li>
+  </ul>
+</div>
+
+<div class="span12" ><p style="font-size:22px;font-weight:bol;padding-bottom:8px;border-bottom:1px solid grey;">My Courses</p></div>
+<% if current_user.courses.present? %>
+
+  <%= render :partial => "course_section", :locals => {:courses => @courses} %>
+<div class="span12" style="text-align:center;">
+    <p>&nbsp;</p>
+    <p><%= link_to "Join More Courses",{:controller => "/courses", :action=>"view_all"},{:class=>"btn btn-custom"}%></p>
+</div>
+
+<% else %>
+
+<div class="span12" style="text-align:center;">
+    <p>&nbsp;</p>
+    <p>You have not signed up for any course.</p>
+    <p><%= link_to "Search for Courses",{:controller => "/courses", :action=>"view_all"},{:class=>"btn btn-custom"}%></p>
+</div>
+
+
+<% end %>
+

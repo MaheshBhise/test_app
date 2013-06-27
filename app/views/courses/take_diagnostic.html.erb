@@ -6,7 +6,7 @@
   <div class="span10 offset1 exam-content">
     <div style="margin-top:10px;">
       <span style="padding-left:20px;color:white;font-size:17px;font-weight:bold;">Diagnostic Test</span>   
-      <span style="padding-right:20px;float:right;color:white;font-size:16px;font-weight:bold;"><img src="/assets/timer.png" />&nbsp;<b id="timer"></b> |  1 of <%= @section.questions.count %></span>
+      <span style="padding-right:20px;float:right;color:white;font-size:16px;font-weight:bold;"><img src="/assets/timer.png" />&nbsp;<b id="timer"></b> |  1 of <%#= @section.questions.count %></span>
     </div>
     <div style="margin:10px 20px;height:400px;overflow:auto;">
       <div id="partial_content">
@@ -18,7 +18,7 @@
         <img src="/assets/help.png"/>  <%= link_to "Help", '' , :style => "color:white;" %> |
         <img src="/assets/exit.png" /> <a href="#myModal" role="button" style="color:white;" data-toggle="modal">Exit</a>
       </span>
-      <%= link_to_function "NEXT","check_selected_answer($('.option_sel:checked').val())",{:class=>"btn btn-custom"} %>
+      <div id="next_button"><%= link_to_function "NEXT","check_selected_answer($('.option_sel:checked').val())",{:class=>"btn btn-custom"} %></div>
     </div>
   </div>
 </div>
@@ -34,7 +34,7 @@
   </div>
   <div class="modal-footer">
     <button class="btn btn-custom" data-dismiss="modal" aria-hidden="true">No</button>
-    <button class="btn btn-custom">Yes</button>
+    <a href="/courses/my_courses"><button class="btn btn-custom">Yes</button></a>
   </div>
 </div>
 
@@ -57,6 +57,10 @@ minutes = (@exam_time / 60) % 60 %>
       if(time == 0) {
         el.innerHTML = "countdown's over!";
         clearInterval(interval);
+       $.ajax({
+       url:  "/courses/time_up",
+       type: "GET"
+       });
         return;
       }
       var minutes = Math.floor( time / 60 );

@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :user_courses
+  has_many :courses ,:through => :user_courses
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -19,7 +21,13 @@ class User < ActiveRecord::Base
     end
     user_data = UserExamData.where("user_id = ? and exam_id = ?", self.id, exam_id)
     if user_data.empty?
-      UserExamData.create(:user_id => self.id, :exam_id => exam_id)
+      sections = Exam.where("id = ?",exam_id).first.test_sections
+      questions_per_section = {}
+      debugger
+      sections.each do |section|
+        questions_per_section[section.section_id] = section.number_of_questions
+      end
+      UserExamData.create(:user_id => self.id, :exam_id => exam_id, :attempted_questions => questions_per_section, :current_question_level => 1, :consecutive_correct_answers => 0)
     end
   end
 

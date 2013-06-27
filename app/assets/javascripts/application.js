@@ -17,5 +17,7 @@
 //= require logins
 //= require mathjs
 //= require ASCIIMathMLwFallback
+//= require jquery.expander
+// require custom
 // require ckeditor/init
 // require_tree .

@@ -1,0 +1,24 @@
+<div class="span12" >&nbsp;</div>
+<div id="header_tabs" class="span12" style="font-size:22px;font-weight:bold;margin-bottom:20px;">
+  <ul>
+    <li class="badge"><a href="/courses/my_courses">1.Select a course</a></li>
+    <li class="badge"><a href="/courses/diagnostics">2.Take Diagnostic</a></li>
+    <li class="badge badge-blue"><a href="/courses/lessons">3.Lessons & Practice</a></li>
+    <li class="badge"><a href="/courses/reassess">4.Reassess</a></li>
+  </ul>
+</div>
+<div class="span12" >&nbsp;</div>
+<div class="span12">
+  <div style="width:50%;float:left;" class="expandable" >
+    <p style="font-size:18px;font-weight:bold;"><%= @sub_topic.sub_topic_name %></p>
+    <p><%= @sub_topic.description %></p></div>
+  <div style="width:19%;float:left;padding-left:5px;">
+    <p>&nbsp;</p>
+    <% unless @sub_topic.video_link.blank? %>
+    <%# @video_src = @sub_topic.video_link.blank? ? "http://www.youtube.com/v/itTskyFLSS8&amp;rel=0&amp;autohide=1&amp;showinfo=0&amp;" : @sub_topic.video_link%>
+    <p><iframe src="<%= @sub_topic.video_link %>" width="500" height="281" frameborder="0" allowfullscreen=""></iframe></p>
+    <% else %>
+    <p>No Video found.</p>
+    <% end %>
+  </div>
+</div>
