@@ -8,9 +8,9 @@
       <%= f.input :section_id,:label=>"Select Section Type",:as=>:select, :collection => Section.all.map{|b| [b.section_name,b.id]}, :include_blank => false  %>
        <%= f.input :topic_id,:label=>"Select Section Type",:as=>:select, :collection => Topic.all.map{|b| [b.topic_name,b.id]}, :include_blank => false  %>     
         <%= f.input :sub_topic_name, :required => true %>
-        <%= f.input :description, :input_html => { :class => 'autogrow', :rows => 10, :cols => 20  }%>
+        <%= f.input :description, :input_html => { :class => 'tinymce' }%><%= tinymce %>
         <%= f.input :video_link %>             
-        <%= f.input :only_paid,:label=>"Select Subscription Type",:as=>:select, :collection => {"Free"=>"0","Paid"=>"1"},:include_blank => false,:required => true %> 
+        <%= f.input :only_paid,:label=>"Select Subscription Type",:as=>:select, :collection => {"Free"=>true,"Paid"=>false},:include_blank => false,:required => true %>
       <% end %>
     </div>
   </div>

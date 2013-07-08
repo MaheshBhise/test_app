@@ -1,4 +1,5 @@
 <% if @question_count == 1 %>
-$('#next_button').html('<%= link_to 'Finish', {:controller => 'courses', :action => 'test_result'}, {:class=>"btn btn-custom"} %>')
+$('#next_button').html('<%= link_to_function 'Finish', "check_selected_answer($('.option_sel:checked').val(),true)", {:class=>"btn btn-custom"} %>')
 <% end %>
+$('#que_count').html("<%= @solved_questions.count + 1 %>");
 $('#partial_content').html('<%= escape_javascript(render :partial=>"show_exam",:locals => {:options => @options,:que => @question })%>');

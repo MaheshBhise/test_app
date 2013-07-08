@@ -112,7 +112,7 @@ ActiveAdmin.register SubTopic do
       end  
     end     
     column "Subscription Type", :only_paid do |v|
-      (v.only_paid==0) ? "Free" : "Paid"
+      (v.only_paid==true) ? "Paid" : "Free"
     end
     column do |v|
       div style: 'color:red;text-align: center;' do 
@@ -153,7 +153,11 @@ ActiveAdmin.register SubTopic do
       end  
     end  
       row :sub_topic_name
-      row :description
+      row :description do
+        div do
+          simple_format sub_topic.description
+        end
+      end
       row 'Section subscription type' do |v|
         (v.only_paid==0) ? "Free" : "Paid"
       end

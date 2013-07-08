@@ -115,30 +115,30 @@
         "user[name]": {
           required: true,
           minlength: 1,
-          Nameformat: true,
+          Nameformat: true
         },
         "user[password]":{
           required: true,
-          minlength: 6,
+          minlength: 6
         },
         "user[password_confirmation]":{
           required: true,
           minlength: 6,
-          equalTo: "#user_password",
+          equalTo: "#user_password"
         },
         "user[security_question_id]": {
-          required: true,
+          required: true
         },
         "user[security_answer]":{
-          required: true,
+          required: true
         },
-        "agree": "required",
+        "agree": "required"
       },
 
       messages: {
         "user[name]": {
           required: "Please enter your full name",
-          minlength: "Please enter your full name",
+          minlength: "Please enter your full name"
         },
         "user[password]": {
           required: "Please provide a password",
@@ -154,10 +154,10 @@
           email: "Please provide correct email address!"
         },
         "user[security_question_id]":{
-          required: "Please select any security question",
+          required: "Please select any security question"
         },
         "user[security_answer]":{
-          required: "Please enter security answer",
+          required: "Please enter security answer"
         },
         "agree": "Please agree to our Terms"
       },
@@ -176,7 +176,7 @@
           var _popover = $(value.element).popover({
             trigger: 'manual',
             placement: 'right',
-            content: value.message,
+            content: value.message
           });
 
           _popover.data('popover').options.content = value.message;

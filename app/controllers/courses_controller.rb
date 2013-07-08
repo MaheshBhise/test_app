@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-before_filter :authenticate_user!, :only=>[:take_diagnostic,:exam_intro,:join_course,:start_exam,:my_courses]
+before_filter :authenticate_user!, :only=>[:take_diagnostic,:exam_intro,:join_course,:start_exam,:my_courses, :lessons, :diagnostics, :reassess]
 
 def course_info
 	@course = Course.find_by_id(params[:id])
@@ -35,17 +35,17 @@ end
 def get_question
      user_exam_data = UserExamData.where(:user_id => current_user.id, :exam_id => session[:exam_id]).first
      section_ids = user_exam_data.attempted_questions
-     solved_questions = user_exam_data.exam_results.map(&:question_id)
+     @solved_questions = user_exam_data.exam_results.map(&:question_id)
      @section_id_array = []
      @question_count = 0
      section_ids.each do |key,value|
        @section_id_array << key if value != 0
        @question_count = @question_count + value
      end
-     if solved_questions.blank?
+     if @solved_questions.blank?
        @question = Question.where("section_id = ?", @section_id_array.sample).first
      else
-       @question = Question.where("section_id = ? and id not in (?)", @section_id_array.sample, solved_questions).first
+       @question = Question.where("section_id = ? and id not in (?)", @section_id_array.sample, @solved_questions).first
      end
      collect_shuffled_options(@question)
 end
@@ -58,10 +58,14 @@ def next_question
 	else
     user_exam_data.update_exam_data(false,params[:que_id])
 	end
-  get_question
+  if params[:last_question]
+    render :js => "window.location = '/courses/test_result'"
+  else
+  get_question 
 	respond_to do |format|
        format.js {  }
     end
+  end
 end
 
 def collect_shuffled_options(que)

@@ -1,13 +1,15 @@
 <div style="background-color:#F8F8F8;padding-left:20px;">
-<pre style="background-color:#F8F8F8;border:none;"><%= que.question.html_safe %></pre>
+<pre style="background-color:#F8F8F8;border:none;"><%= @solved_questions.count + 1 %>. <%= que.question.html_safe %></pre>
 <table cellpadding="0" cellspacing="0">
 <% options.shuffle.each do |o| %>
 <tr>
-<td style="border: solid 1px grey;">
-<%= radio_button_tag "sel_option","#{o}", false,:class =>"option_sel"%>
-</td>
-<td style="border: solid 1px grey;">
-	<pre style="background-color:#F8F8F8;border:none;"><%= o.to_s.html_safe %></pre>
+<td>
+  <table>
+    <tr>
+      <td style="width: 12px;height: 12px;"><%= radio_button_tag "sel_option","#{o}", false,:class =>"option_sel"%></td>
+      <td style="font-size: 12px;padding-top: 16px;"><pre style="background-color:#F8F8F8;border:none;"><%= o.to_s.html_safe %></pre></td>
+    </tr>
+  </table>
 </td>
 </tr>
 <% end %>
@@ -15,11 +17,17 @@
 </div>
 
 <script type="text/javascript">
-	function check_selected_answer(selected_val){
-		if(selected_val != null){
-	        $.ajax({url: '<%= url_for :action => 'next_question' %>',
+	function check_selected_answer(selected_val,last_question){
+	if(selected_val != null){
+          if(last_question == true){
+                $.ajax({url: '<%= url_for :action => 'next_question' %>',
+	        data: 'selected_answer=' + selected_val + '&que_id=' + '<%= que.id %>' + '&last_question=true',
+	        dataType: 'script'})
+          }else{
+            	$.ajax({url: '<%= url_for :action => 'next_question' %>',
 	        data: 'selected_answer=' + selected_val + '&que_id=' + '<%= que.id %>',
-	        dataType: 'script'})	
+	        dataType: 'script'})
+          }
     	}else{
     		alert("Please select any option to continue!!");
 	    }

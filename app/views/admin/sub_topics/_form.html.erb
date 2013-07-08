@@ -55,9 +55,15 @@
     <%= semantic_fields_for "sub_topic[]" do |f| %> 
       <%= f.inputs "Add Sub-Topic Details" do %>
         <%= f.input :sub_topic_name, :required => true %>
-        <%= f.input :description, :required => true, :input_html=>{:class => "tinymce"} %><%= tinymce %>
+        <ol>
+          <li>
+            <label for="sub_topic_description" class=" label">Description<abbr title="required">*</abbr></label>
+            <textarea id="sub_topic_description" class="tinymce" rows="20" name="sub_topic[][description]" aria-hidden="true">
+            </textarea><%= tinymce %>
+          </li>
+        </ol>
         <%= f.input :video_link %>             
-        <%= f.input :only_paid,:label=>"Select Subscription Type",:as=>:select, :collection => {"Free"=>"0","Paid"=>"1"},:include_blank => false,:required => true %> 
+        <%= f.input :only_paid,:label=>"Select Subscription Type",:as=>:select, :collection => {"Free"=>true,"Paid"=>false},:include_blank => false,:required => true %>
       <% end %>
     <% end %>
     </div>
